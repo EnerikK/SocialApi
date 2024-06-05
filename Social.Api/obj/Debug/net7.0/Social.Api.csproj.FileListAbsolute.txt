@@ -35,3 +35,7 @@ E:\!C# Projects\Social.Api\Social.Api\obj\Debug\net7.0\Social.Api.genruntimeconf
 E:\!C# Projects\Social.Api\Social.Api\obj\Debug\net7.0\ref\Social.Api.dll
 E:\!C# Projects\Social.Api\Social.Api\bin\Debug\net7.0\Microsoft.AspNetCore.Mvc.Versioning.dll
 E:\!C# Projects\Social.Api\Social.Api\bin\Debug\net7.0\Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer.dll
+E:\!C# Projects\Social.Api\Social.Api\bin\Debug\net7.0\AutoMapper.dll
+E:\!C# Projects\Social.Api\Social.Api\bin\Debug\net7.0\Microsoft.Extensions.Configuration.Abstractions.dll
+E:\!C# Projects\Social.Api\Social.Api\bin\Debug\net7.0\Microsoft.Extensions.Primitives.dll
+E:\!C# Projects\Social.Api\Social.Api\obj\Debug\net7.0\Social.Api.sourcelink.json

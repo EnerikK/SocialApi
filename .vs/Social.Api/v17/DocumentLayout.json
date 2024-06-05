@@ -3,12 +3,44 @@
   "WorkspaceRootPath": "E:\\!C# Projects\\Social.Api\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{8766A304-3394-4BCC-86E6-4CC6DE9ECCE4}|Social.Api\\Social.Api.csproj|e:\\!c# projects\\social.api\\social.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8766A304-3394-4BCC-86E6-4CC6DE9ECCE4}|Social.Api\\Social.Api.csproj|solutionrelative:social.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8766A304-3394-4BCC-86E6-4CC6DE9ECCE4}|Social.Api\\Social.Api.csproj|e:\\!c# projects\\social.api\\social.api\\extensions\\registrarextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8766A304-3394-4BCC-86E6-4CC6DE9ECCE4}|Social.Api\\Social.Api.csproj|solutionrelative:social.api\\extensions\\registrarextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8766A304-3394-4BCC-86E6-4CC6DE9ECCE4}|Social.Api\\Social.Api.csproj|e:\\!c# projects\\social.api\\social.api\\registers\\mvcregistrar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8766A304-3394-4BCC-86E6-4CC6DE9ECCE4}|Social.Api\\Social.Api.csproj|solutionrelative:social.api\\registers\\mvcregistrar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8766A304-3394-4BCC-86E6-4CC6DE9ECCE4}|Social.Api\\Social.Api.csproj|e:\\!c# projects\\social.api\\social.api\\registers\\iwebapplicationbuilderregistar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8766A304-3394-4BCC-86E6-4CC6DE9ECCE4}|Social.Api\\Social.Api.csproj|solutionrelative:social.api\\registers\\iwebapplicationbuilderregistar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8766A304-3394-4BCC-86E6-4CC6DE9ECCE4}|Social.Api\\Social.Api.csproj|e:\\!c# projects\\social.api\\social.api\\registers\\iwebapplicationregistar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8766A304-3394-4BCC-86E6-4CC6DE9ECCE4}|Social.Api\\Social.Api.csproj|solutionrelative:social.api\\registers\\iwebapplicationregistar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{8766A304-3394-4BCC-86E6-4CC6DE9ECCE4}|Social.Api\\Social.Api.csproj|e:\\!c# projects\\social.api\\social.api\\options\\configureswaggeroptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8766A304-3394-4BCC-86E6-4CC6DE9ECCE4}|Social.Api\\Social.Api.csproj|solutionrelative:social.api\\options\\configureswaggeroptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8766A304-3394-4BCC-86E6-4CC6DE9ECCE4}|Social.Api\\Social.Api.csproj|e:\\!c# projects\\social.api\\social.api\\registers\\iregistrar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8766A304-3394-4BCC-86E6-4CC6DE9ECCE4}|Social.Api\\Social.Api.csproj|solutionrelative:social.api\\registers\\iregistrar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8766A304-3394-4BCC-86E6-4CC6DE9ECCE4}|Social.Api\\Social.Api.csproj|e:\\!c# projects\\social.api\\social.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8766A304-3394-4BCC-86E6-4CC6DE9ECCE4}|Social.Api\\Social.Api.csproj|solutionrelative:social.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8766A304-3394-4BCC-86E6-4CC6DE9ECCE4}|Social.Api\\Social.Api.csproj|e:\\!c# projects\\social.api\\social.api\\registers\\mvcwebappregistrar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8766A304-3394-4BCC-86E6-4CC6DE9ECCE4}|Social.Api\\Social.Api.csproj|solutionrelative:social.api\\registers\\mvcwebappregistrar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8766A304-3394-4BCC-86E6-4CC6DE9ECCE4}|Social.Api\\Social.Api.csproj|e:\\!c# projects\\social.api\\social.api\\registers\\swaggerwebappregistrar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8766A304-3394-4BCC-86E6-4CC6DE9ECCE4}|Social.Api\\Social.Api.csproj|solutionrelative:social.api\\registers\\swaggerwebappregistrar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8766A304-3394-4BCC-86E6-4CC6DE9ECCE4}|Social.Api\\Social.Api.csproj|e:\\!c# projects\\social.api\\social.api\\registers\\swaggerregistrar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8766A304-3394-4BCC-86E6-4CC6DE9ECCE4}|Social.Api\\Social.Api.csproj|solutionrelative:social.api\\registers\\swaggerregistrar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{8766A304-3394-4BCC-86E6-4CC6DE9ECCE4}|Social.Api\\Social.Api.csproj|e:\\!c# projects\\social.api\\social.api\\controllers\\v1\\postscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -30,17 +62,69 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
+              "Title": "IRegistrar.cs",
+              "DocumentMoniker": "E:\\!C# Projects\\Social.Api\\Social.Api\\Registers\\IRegistrar.cs",
+              "RelativeDocumentMoniker": "Social.Api\\Registers\\IRegistrar.cs",
+              "ToolTip": "E:\\!C# Projects\\Social.Api\\Social.Api\\Registers\\IRegistrar.cs",
+              "RelativeToolTip": "Social.Api\\Registers\\IRegistrar.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAfAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-05T20:30:21.98Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "RegistrarExtensions.cs",
+              "DocumentMoniker": "E:\\!C# Projects\\Social.Api\\Social.Api\\Extensions\\RegistrarExtensions.cs",
+              "RelativeDocumentMoniker": "Social.Api\\Extensions\\RegistrarExtensions.cs",
+              "ToolTip": "E:\\!C# Projects\\Social.Api\\Social.Api\\Extensions\\RegistrarExtensions.cs",
+              "RelativeToolTip": "Social.Api\\Extensions\\RegistrarExtensions.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAABDAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-05T20:18:48.313Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "IWebApplicationBuilderRegistar.cs",
+              "DocumentMoniker": "E:\\!C# Projects\\Social.Api\\Social.Api\\Registers\\IWebApplicationBuilderRegistar.cs",
+              "RelativeDocumentMoniker": "Social.Api\\Registers\\IWebApplicationBuilderRegistar.cs",
+              "ToolTip": "E:\\!C# Projects\\Social.Api\\Social.Api\\Registers\\IWebApplicationBuilderRegistar.cs*",
+              "RelativeToolTip": "Social.Api\\Registers\\IWebApplicationBuilderRegistar.cs*",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAABAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-05T20:00:49.185Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Program.cs",
+              "DocumentMoniker": "E:\\!C# Projects\\Social.Api\\Social.Api\\Program.cs",
+              "RelativeDocumentMoniker": "Social.Api\\Program.cs",
+              "ToolTip": "E:\\!C# Projects\\Social.Api\\Social.Api\\Program.cs",
+              "RelativeToolTip": "Social.Api\\Program.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAAA4AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-04T22:10:09.505Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "ConfigureSwaggerOptions.cs",
               "DocumentMoniker": "E:\\!C# Projects\\Social.Api\\Social.Api\\Options\\ConfigureSwaggerOptions.cs",
               "RelativeDocumentMoniker": "Social.Api\\Options\\ConfigureSwaggerOptions.cs",
               "ToolTip": "E:\\!C# Projects\\Social.Api\\Social.Api\\Options\\ConfigureSwaggerOptions.cs",
               "RelativeToolTip": "Social.Api\\Options\\ConfigureSwaggerOptions.cs",
-              "ViewState": "AQIAAAgAAAAAAAAAAAAxwBAAAABZAAAA",
+              "ViewState": "AQIAABIAAAAAAAAAAAAowAkAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-04T23:09:13.377Z",
               "EditorCaption": ""
@@ -48,19 +132,71 @@
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "PostsController.cs",
-              "DocumentMoniker": "E:\\!C# Projects\\Social.Api\\Social.Api\\Controllers\\V2\\PostsController.cs",
-              "RelativeDocumentMoniker": "Social.Api\\Controllers\\V2\\PostsController.cs",
-              "ToolTip": "E:\\!C# Projects\\Social.Api\\Social.Api\\Controllers\\V2\\PostsController.cs",
-              "RelativeToolTip": "Social.Api\\Controllers\\V2\\PostsController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAjAAAA",
+              "Title": "IWebApplicationRegistar.cs",
+              "DocumentMoniker": "E:\\!C# Projects\\Social.Api\\Social.Api\\Registers\\IWebApplicationRegistar.cs",
+              "RelativeDocumentMoniker": "Social.Api\\Registers\\IWebApplicationRegistar.cs",
+              "ToolTip": "E:\\!C# Projects\\Social.Api\\Social.Api\\Registers\\IWebApplicationRegistar.cs*",
+              "RelativeToolTip": "Social.Api\\Registers\\IWebApplicationRegistar.cs*",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAtAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-04T22:49:51.247Z",
+              "WhenOpened": "2024-06-05T20:07:47.01Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
+              "Title": "MVCRegistrar.cs",
+              "DocumentMoniker": "E:\\!C# Projects\\Social.Api\\Social.Api\\Registers\\MVCRegistrar.cs",
+              "RelativeDocumentMoniker": "Social.Api\\Registers\\MVCRegistrar.cs",
+              "ToolTip": "E:\\!C# Projects\\Social.Api\\Social.Api\\Registers\\MVCRegistrar.cs",
+              "RelativeToolTip": "Social.Api\\Registers\\MVCRegistrar.cs",
+              "ViewState": "AQIAABAAAAAAAAAAAAAgwAUAAAA+AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-05T20:13:35.577Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "MVCWebAppRegistrar.cs",
+              "DocumentMoniker": "E:\\!C# Projects\\Social.Api\\Social.Api\\Registers\\MVCWebAppRegistrar.cs",
+              "RelativeDocumentMoniker": "Social.Api\\Registers\\MVCWebAppRegistrar.cs",
+              "ToolTip": "E:\\!C# Projects\\Social.Api\\Social.Api\\Registers\\MVCWebAppRegistrar.cs",
+              "RelativeToolTip": "Social.Api\\Registers\\MVCWebAppRegistrar.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAhAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-05T20:16:47.464Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "SwaggerWebAppRegistrar.cs",
+              "DocumentMoniker": "E:\\!C# Projects\\Social.Api\\Social.Api\\Registers\\SwaggerWebAppRegistrar.cs",
+              "RelativeDocumentMoniker": "Social.Api\\Registers\\SwaggerWebAppRegistrar.cs",
+              "ToolTip": "E:\\!C# Projects\\Social.Api\\Social.Api\\Registers\\SwaggerWebAppRegistrar.cs",
+              "RelativeToolTip": "Social.Api\\Registers\\SwaggerWebAppRegistrar.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-05T20:15:35.704Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "SwaggerRegistrar.cs",
+              "DocumentMoniker": "E:\\!C# Projects\\Social.Api\\Social.Api\\Registers\\SwaggerRegistrar.cs",
+              "RelativeDocumentMoniker": "Social.Api\\Registers\\SwaggerRegistrar.cs",
+              "ToolTip": "E:\\!C# Projects\\Social.Api\\Social.Api\\Registers\\SwaggerRegistrar.cs",
+              "RelativeToolTip": "Social.Api\\Registers\\SwaggerRegistrar.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAtAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-05T20:11:36.762Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
               "Title": "PostsController.cs",
               "DocumentMoniker": "E:\\!C# Projects\\Social.Api\\Social.Api\\Controllers\\V1\\PostsController.cs",
               "RelativeDocumentMoniker": "Social.Api\\Controllers\\V1\\PostsController.cs",
@@ -73,7 +209,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 12,
               "Title": "Post.cs",
               "DocumentMoniker": "E:\\!C# Projects\\Social.Api\\Domain\\Models\\Post.cs",
               "RelativeDocumentMoniker": "Domain\\Models\\Post.cs",
@@ -81,21 +217,19 @@
               "RelativeToolTip": "Domain\\Models\\Post.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAqwAsAAAAWAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-04T22:12:36.185Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-04T22:12:36.185Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "E:\\!C# Projects\\Social.Api\\Social.Api\\Program.cs",
-              "RelativeDocumentMoniker": "Social.Api\\Program.cs",
-              "ToolTip": "E:\\!C# Projects\\Social.Api\\Social.Api\\Program.cs",
-              "RelativeToolTip": "Social.Api\\Program.cs",
-              "ViewState": "AQIAAAwAAAAAAAAAAAAAABAAAABgAAAA",
+              "DocumentIndex": 11,
+              "Title": "PostsController.cs",
+              "DocumentMoniker": "E:\\!C# Projects\\Social.Api\\Social.Api\\Controllers\\V2\\PostsController.cs",
+              "RelativeDocumentMoniker": "Social.Api\\Controllers\\V2\\PostsController.cs",
+              "ToolTip": "E:\\!C# Projects\\Social.Api\\Social.Api\\Controllers\\V2\\PostsController.cs",
+              "RelativeToolTip": "Social.Api\\Controllers\\V2\\PostsController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAjAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-04T22:10:09.505Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-04T22:49:51.247Z"
             }
           ]
         }
