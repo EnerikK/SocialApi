@@ -1,0 +1,105 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "E:\\!C# Projects\\Social.Api\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{8766A304-3394-4BCC-86E6-4CC6DE9ECCE4}|Social.Api\\Social.Api.csproj|e:\\!c# projects\\social.api\\social.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8766A304-3394-4BCC-86E6-4CC6DE9ECCE4}|Social.Api\\Social.Api.csproj|solutionrelative:social.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8766A304-3394-4BCC-86E6-4CC6DE9ECCE4}|Social.Api\\Social.Api.csproj|e:\\!c# projects\\social.api\\social.api\\options\\configureswaggeroptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8766A304-3394-4BCC-86E6-4CC6DE9ECCE4}|Social.Api\\Social.Api.csproj|solutionrelative:social.api\\options\\configureswaggeroptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8766A304-3394-4BCC-86E6-4CC6DE9ECCE4}|Social.Api\\Social.Api.csproj|e:\\!c# projects\\social.api\\social.api\\controllers\\v1\\postscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8766A304-3394-4BCC-86E6-4CC6DE9ECCE4}|Social.Api\\Social.Api.csproj|solutionrelative:social.api\\controllers\\v1\\postscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8766A304-3394-4BCC-86E6-4CC6DE9ECCE4}|Social.Api\\Social.Api.csproj|e:\\!c# projects\\social.api\\social.api\\controllers\\v2\\postscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8766A304-3394-4BCC-86E6-4CC6DE9ECCE4}|Social.Api\\Social.Api.csproj|solutionrelative:social.api\\controllers\\v2\\postscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{432F7A8C-93BB-498F-99B8-4265F3728DBC}|Domain\\Social.Domain.csproj|e:\\!c# projects\\social.api\\domain\\models\\post.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{432F7A8C-93BB-498F-99B8-4265F3728DBC}|Domain\\Social.Domain.csproj|solutionrelative:domain\\models\\post.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ConfigureSwaggerOptions.cs",
+              "DocumentMoniker": "E:\\!C# Projects\\Social.Api\\Social.Api\\Options\\ConfigureSwaggerOptions.cs",
+              "RelativeDocumentMoniker": "Social.Api\\Options\\ConfigureSwaggerOptions.cs",
+              "ToolTip": "E:\\!C# Projects\\Social.Api\\Social.Api\\Options\\ConfigureSwaggerOptions.cs",
+              "RelativeToolTip": "Social.Api\\Options\\ConfigureSwaggerOptions.cs",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAxwBAAAABZAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-04T23:09:13.377Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "PostsController.cs",
+              "DocumentMoniker": "E:\\!C# Projects\\Social.Api\\Social.Api\\Controllers\\V2\\PostsController.cs",
+              "RelativeDocumentMoniker": "Social.Api\\Controllers\\V2\\PostsController.cs",
+              "ToolTip": "E:\\!C# Projects\\Social.Api\\Social.Api\\Controllers\\V2\\PostsController.cs",
+              "RelativeToolTip": "Social.Api\\Controllers\\V2\\PostsController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAjAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-04T22:49:51.247Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "PostsController.cs",
+              "DocumentMoniker": "E:\\!C# Projects\\Social.Api\\Social.Api\\Controllers\\V1\\PostsController.cs",
+              "RelativeDocumentMoniker": "Social.Api\\Controllers\\V1\\PostsController.cs",
+              "ToolTip": "E:\\!C# Projects\\Social.Api\\Social.Api\\Controllers\\V1\\PostsController.cs",
+              "RelativeToolTip": "Social.Api\\Controllers\\V1\\PostsController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAA1AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-04T22:16:11.305Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Post.cs",
+              "DocumentMoniker": "E:\\!C# Projects\\Social.Api\\Domain\\Models\\Post.cs",
+              "RelativeDocumentMoniker": "Domain\\Models\\Post.cs",
+              "ToolTip": "E:\\!C# Projects\\Social.Api\\Domain\\Models\\Post.cs",
+              "RelativeToolTip": "Domain\\Models\\Post.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAqwAsAAAAWAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-04T22:12:36.185Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "E:\\!C# Projects\\Social.Api\\Social.Api\\Program.cs",
+              "RelativeDocumentMoniker": "Social.Api\\Program.cs",
+              "ToolTip": "E:\\!C# Projects\\Social.Api\\Social.Api\\Program.cs",
+              "RelativeToolTip": "Social.Api\\Program.cs",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAABAAAABgAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-04T22:10:09.505Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

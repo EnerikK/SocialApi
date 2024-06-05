@@ -1,0 +1,11 @@
+E:\!C# Projects\Social.Api\Domain\bin\Debug\net7.0\Social.Domain.deps.json
+E:\!C# Projects\Social.Api\Domain\bin\Debug\net7.0\Social.Domain.dll
+E:\!C# Projects\Social.Api\Domain\bin\Debug\net7.0\Social.Domain.pdb
+E:\!C# Projects\Social.Api\Domain\obj\Debug\net7.0\Social.Domain.GeneratedMSBuildEditorConfig.editorconfig
+E:\!C# Projects\Social.Api\Domain\obj\Debug\net7.0\Social.Domain.AssemblyInfoInputs.cache
+E:\!C# Projects\Social.Api\Domain\obj\Debug\net7.0\Social.Domain.AssemblyInfo.cs
+E:\!C# Projects\Social.Api\Domain\obj\Debug\net7.0\Social.Domain.csproj.CoreCompileInputs.cache
+E:\!C# Projects\Social.Api\Domain\obj\Debug\net7.0\Social.Domain.dll
+E:\!C# Projects\Social.Api\Domain\obj\Debug\net7.0\refint\Social.Domain.dll
+E:\!C# Projects\Social.Api\Domain\obj\Debug\net7.0\Social.Domain.pdb
+E:\!C# Projects\Social.Api\Domain\obj\Debug\net7.0\ref\Social.Domain.dll
