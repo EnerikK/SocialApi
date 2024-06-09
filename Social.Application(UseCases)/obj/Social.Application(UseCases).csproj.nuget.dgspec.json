@@ -4,14 +4,14 @@
     "E:\\!C# Projects\\Social.Api\\Social.Application(UseCases)\\Social.Application(UseCases).csproj": {}
   },
   "projects": {
-    "E:\\!C# Projects\\Social.Api\\Social.Application(UseCases)\\Social.Application(UseCases).csproj": {
+    "E:\\!C# Projects\\Social.Api\\Domain\\Social.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\!C# Projects\\Social.Api\\Social.Application(UseCases)\\Social.Application(UseCases).csproj",
-        "projectName": "Social.Application(UseCases)",
-        "projectPath": "E:\\!C# Projects\\Social.Api\\Social.Application(UseCases)\\Social.Application(UseCases).csproj",
+        "projectUniqueName": "E:\\!C# Projects\\Social.Api\\Domain\\Social.Domain.csproj",
+        "projectName": "Social.Domain",
+        "projectPath": "E:\\!C# Projects\\Social.Api\\Domain\\Social.Domain.csproj",
         "packagesPath": "C:\\Users\\eneri\\.nuget\\packages\\",
-        "outputPath": "E:\\!C# Projects\\Social.Api\\Social.Application(UseCases)\\obj\\",
+        "outputPath": "E:\\!C# Projects\\Social.Api\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -50,8 +50,179 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "E:\\!C# Projects\\Social.Api\\Social.Application(UseCases)\\Social.Application(UseCases).csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\!C# Projects\\Social.Api\\Social.Application(UseCases)\\Social.Application(UseCases).csproj",
+        "projectName": "Social.Application(UseCases)",
+        "projectPath": "E:\\!C# Projects\\Social.Api\\Social.Application(UseCases)\\Social.Application(UseCases).csproj",
+        "packagesPath": "C:\\Users\\eneri\\.nuget\\packages\\",
+        "outputPath": "E:\\!C# Projects\\Social.Api\\Social.Application(UseCases)\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\eneri\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://www.myget.org/F/discord-net/api/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "E:\\!C# Projects\\Social.Api\\Domain\\Social.Domain.csproj": {
+                "projectPath": "E:\\!C# Projects\\Social.Api\\Domain\\Social.Domain.csproj"
+              },
+              "E:\\!C# Projects\\Social.Api\\Social.DataAccess\\Social.DataAccess.csproj": {
+                "projectPath": "E:\\!C# Projects\\Social.Api\\Social.DataAccess\\Social.DataAccess.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[10.1.1, )"
+            },
+            "MediatR": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
             "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.20, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "E:\\!C# Projects\\Social.Api\\Social.DataAccess\\Social.DataAccess.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\!C# Projects\\Social.Api\\Social.DataAccess\\Social.DataAccess.csproj",
+        "projectName": "Social.DataAccess",
+        "projectPath": "E:\\!C# Projects\\Social.Api\\Social.DataAccess\\Social.DataAccess.csproj",
+        "packagesPath": "C:\\Users\\eneri\\.nuget\\packages\\",
+        "outputPath": "E:\\!C# Projects\\Social.Api\\Social.DataAccess\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\eneri\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://www.myget.org/F/discord-net/api/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "E:\\!C# Projects\\Social.Api\\Domain\\Social.Domain.csproj": {
+                "projectPath": "E:\\!C# Projects\\Social.Api\\Domain\\Social.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.20, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.20, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[7.0.20, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
               "version": "[7.0.20, )"
             }

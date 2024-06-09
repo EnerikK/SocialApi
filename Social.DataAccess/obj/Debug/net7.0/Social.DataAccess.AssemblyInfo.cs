@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Social.DataAccess")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+64b65851623fc1c8aec6a0aa255fb58740f2df8d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f864214f34e3947904bfe34afadb844da418f362")]
 [assembly: System.Reflection.AssemblyProductAttribute("Social.DataAccess")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Social.DataAccess")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

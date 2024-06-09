@@ -131,6 +131,10 @@
               "target": "Package",
               "version": "[13.0.1, )"
             },
+            "MediatR.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
             "Microsoft.AspNetCore.Mvc.Versioning": {
               "target": "Package",
               "version": "[5.1.0, )"
@@ -218,7 +222,14 @@
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "E:\\!C# Projects\\Social.Api\\Domain\\Social.Domain.csproj": {
+                "projectPath": "E:\\!C# Projects\\Social.Api\\Domain\\Social.Domain.csproj"
+              },
+              "E:\\!C# Projects\\Social.Api\\Social.DataAccess\\Social.DataAccess.csproj": {
+                "projectPath": "E:\\!C# Projects\\Social.Api\\Social.DataAccess\\Social.DataAccess.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -236,6 +247,14 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[10.1.1, )"
+            },
+            "MediatR": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[7.0.20, )"
