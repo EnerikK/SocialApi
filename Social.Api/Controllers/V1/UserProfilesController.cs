@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Social.Api.Contracts.Common;
 using Social.Api.Contracts.UserProfile.Requests;
 using Social.Api.Contracts.UserProfile.Responses;
+using Social.Application_UseCases_.Enums;
 using Social.Application_UseCases_.UserProfiles.Commands;
 using Social.Application_UseCases_.UserProfiles.Queries;
 
@@ -11,7 +13,7 @@ namespace Social.Api.Controllers.V1
     [ApiVersion("1.0")]
     [Route(ApiRoutes.BaseRoute)]
     [ApiController]
-    public class UserProfilesController : Controller
+    public class UserProfilesController : BaseController
     {
         private readonly IMediator _mediator;
         private readonly IMapper _mapper;
@@ -43,6 +45,9 @@ namespace Social.Api.Controllers.V1
         {
             var query = new GetUserProfileById {UserProfileId = Guid.Parse(id)};
             var response = await _mediator.Send(query);
+            
+            if (response is null) return NotFound($"No User with profile Id {id} found");
+            
             var userProfile = _mapper.Map<UserProfileResponse>(response);
             return Ok(userProfile);
         }
@@ -53,6 +58,8 @@ namespace Social.Api.Controllers.V1
             var command = _mapper.Map<UpdateUserProfileBasicInfo>(updateProfile);
             command.UserProfileId = Guid.Parse(id);
             var response = await _mediator.Send(command);
+
+            if (response.IsError) return HandleErrorResponse(response.Errors);
             return NoContent();
         }
         [HttpDelete]

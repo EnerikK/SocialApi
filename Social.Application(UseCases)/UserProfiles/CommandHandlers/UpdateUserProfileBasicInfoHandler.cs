@@ -8,30 +8,54 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Social.Application_UseCases_.Enums;
+using Social.Application_UseCases_.Models;
 
 namespace Social.Application_UseCases_.UserProfiles.CommandHandlers
 {
-    internal class UpdateUserProfileBasicInfoHandler : IRequestHandler<UpdateUserProfileBasicInfo>
+    internal class UpdateUserProfileBasicInfoHandler : IRequestHandler<UpdateUserProfileBasicInfo,OperationResult<UserProfile>>
     {
         private readonly DataContext _datactx;
         public UpdateUserProfileBasicInfoHandler(DataContext dataCtx)
         {
             _datactx = dataCtx;
         }
-        public async Task<Unit> Handle(UpdateUserProfileBasicInfo request, CancellationToken cancellationToken)
+        public async Task<OperationResult<UserProfile>> Handle(UpdateUserProfileBasicInfo request, CancellationToken cancellationToken)
         {
-            var userProfile = await _datactx.UserProfiles
-                .FirstOrDefaultAsync(userProfile => userProfile.UserProfileId == request.UserProfileId);
+            var result = new OperationResult<UserProfile>();
 
-            var basicInfo = BasicInfo.CreateBasicInfo(request.FirstName, request.LastName
-               , request.EmailAddress, request.Phone, request.DateOfBirth, request.CurrentCity);
+            try
+            {
+                var userProfile = await _datactx.UserProfiles
+                    .FirstOrDefaultAsync(userProfile => userProfile.UserProfileId == request.UserProfileId);
 
-            userProfile.UpdateBasicInfo(basicInfo);
+                if (userProfile is null)
+                {
+                    result.IsError = true;
+                    var error = new Error { Code = ErrorCode.NotFound, Message = $"UserProfile with Id {request.UserProfileId} not found"};
+                    result.Errors.Add(error);
+                    return result;
+                }
 
-            _datactx.UserProfiles.Update(userProfile);
-            await _datactx.SaveChangesAsync();
-            return new Unit();
+                var basicInfo = BasicInfo.CreateBasicInfo(request.FirstName, request.LastName
+                    , request.EmailAddress, request.Phone, request.DateOfBirth, request.CurrentCity);
 
+                userProfile.UpdateBasicInfo(basicInfo);
+
+                _datactx.UserProfiles.Update(userProfile);
+                await _datactx.SaveChangesAsync();
+
+                result.PayLoad = userProfile;
+                return result;
+            }
+            catch (Exception ex)
+            {
+                var error = new Error { Code = ErrorCode.ServerError, Message = ex.Message };
+                result.IsError = true;
+                result.Errors.Add(error);
+            }
+
+            return result;
         }
     }
 }

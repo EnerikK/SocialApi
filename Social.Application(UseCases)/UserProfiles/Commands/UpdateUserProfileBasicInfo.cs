@@ -4,10 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Social.Application_UseCases_.Models;
+using Social.Domain.Aggregates.UserProfileAggregate;
 
 namespace Social.Application_UseCases_.UserProfiles.Commands
 {
-    public  class UpdateUserProfileBasicInfo : IRequest
+    public  class UpdateUserProfileBasicInfo : IRequest<OperationResult<UserProfile>>
     {   
         public Guid UserProfileId { get; set; } //clients dont need to provide an id but in
                                                 //my case if i want to update i need an id
