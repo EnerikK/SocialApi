@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.AspNetCore.Mvc;
+using Social.Api.Filters;
 
 namespace Social.Api.Registers
 {
@@ -9,8 +10,13 @@ namespace Social.Api.Registers
         {
             // Add services to the container.
 
-            builder.Services.AddControllers();
-            builder.Services.AddApiVersioning(config =>
+            builder.Services.AddControllers(
+                config =>
+                {
+                    config.Filters.Add(typeof(SocialExceptionHandler));
+                });
+            builder.Services.AddApiVersioning(
+                config =>
             {
                 config.DefaultApiVersion = new ApiVersion(1, 0);
                 config.AssumeDefaultVersionWhenUnspecified = true;

@@ -21,7 +21,7 @@ namespace Social.Domain.Aggregates.UserProfileAggregate
 
         //Factory Method
         public static BasicInfo CreateBasicInfo(string firstName, string lastName, string emailAddress,
-            string phone, DateTime dateOfBirth, string currentCiry)
+            string phone, DateTime dateOfBirth, string currentCity)
         {
             //TODO:Implement validation , error handling , error notification
             return new BasicInfo()
@@ -31,7 +31,7 @@ namespace Social.Domain.Aggregates.UserProfileAggregate
                 EmailAddress = emailAddress,
                 Phone = phone,
                 DateOfBirth = dateOfBirth,
-                CurrentCity = currentCiry
+                CurrentCity = currentCity
             };
         }
        
