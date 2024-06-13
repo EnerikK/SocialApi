@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "bAcgExywSchWb76Y0pFT4e7tjM0quCIJvfwrb5nz0Xzz+JhaSbOIhrb8Do2YmznLygs0TgAiLf9wurnq6Op4DQ==",
+  "dgSpecHash": "T3IM0wcwrPu+0LzMuDJvaQM7GNSJYz3XVCO+MSxQEhJksVTqCyqZbWtxGWy3w5pElUnn99Q7dz05LO4pkiU7xA==",
   "success": true,
   "projectFilePath": "E:\\!C# Projects\\Social.Api\\Domain\\Social.Domain.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\eneri\\.nuget\\packages\\fluentvalidation\\11.9.2\\fluentvalidation.11.9.2.nupkg.sha512"
+  ],
   "logs": []
 }

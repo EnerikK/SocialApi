@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Social.Domain.Exceptions;
+using Social.Domain.Validators.UserProfileValidators;
 
 namespace Social.Domain.Aggregates.UserProfileAggregate
 {
@@ -23,8 +25,9 @@ namespace Social.Domain.Aggregates.UserProfileAggregate
         public static BasicInfo CreateBasicInfo(string firstName, string lastName, string emailAddress,
             string phone, DateTime dateOfBirth, string currentCity)
         {
-            //TODO:Implement validation , error handling , error notification
-            return new BasicInfo()
+            var validator = new BasicInfoValidator();
+
+            var ObjToValidate = new BasicInfo
             {
                 FirstName = firstName,
                 LastName = lastName,
@@ -33,6 +36,17 @@ namespace Social.Domain.Aggregates.UserProfileAggregate
                 DateOfBirth = dateOfBirth,
                 CurrentCity = currentCity
             };
+
+            var validationResult = validator.Validate(ObjToValidate);
+            if (validationResult.IsValid) return ObjToValidate;
+
+            var exception = new UserProfileNotValidException("The user profile is not valid ");
+            foreach (var error in validationResult.Errors)
+            {
+                exception.ValidationErrors.Add(error.ErrorMessage);
+            }
+
+            throw exception;
         }
        
     }

@@ -94,3 +94,4 @@ E:\!C# Projects\Social.Api\Social.Api\bin\Debug\net7.0\Social.Application(UseCas
 E:\!C# Projects\Social.Api\Social.Api\bin\Debug\net7.0\Social.DataAccess.pdb
 E:\!C# Projects\Social.Api\Social.Api\bin\Debug\net7.0\MediatR.dll
 E:\!C# Projects\Social.Api\Social.Api\bin\Debug\net7.0\MediatR.Extensions.Microsoft.DependencyInjection.dll
+E:\!C# Projects\Social.Api\Social.Api\bin\Debug\net7.0\FluentValidation.dll

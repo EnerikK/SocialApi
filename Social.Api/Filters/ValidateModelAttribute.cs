@@ -7,11 +7,11 @@ namespace Social.Api.Filters;
 
 public class ValidateModelAttribute : ActionFilterAttribute
 {
-    public override void OnActionExecuting(ActionExecutingContext context)
+    public override void OnResultExecuting(ResultExecutingContext context)
     {
         var apiError = new ErrorResponse();
 
-        if (context.ModelState.IsValid)
+        if (!context.ModelState.IsValid)
         {
             apiError.StatusCode = 1;
             apiError.StatusMessage = "Bad Request";
@@ -19,11 +19,14 @@ public class ValidateModelAttribute : ActionFilterAttribute
             var errors = context.ModelState.AsEnumerable();
             foreach (var error in errors) // getting all the errors in the api error list 
             {
-                apiError.Errors.Add(error.Value.ToString());
+                foreach (var modelError in error.Value.Errors)
+                {
+                    apiError.Errors.Add(modelError.ErrorMessage);
+                }
             }
 
-            context.Result = new JsonResult(apiError) { StatusCode = 1 };
-            //TODO:Aspnet is ovveriding the action result, i have to somehow disable that 
+            context.Result = new BadRequestObjectResult(apiError);
+            //TODO:Aspnet is overiding the action result, i have to somehow disable that 
         }
     }
 }

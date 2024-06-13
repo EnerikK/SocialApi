@@ -10,3 +10,4 @@ E:\!C# Projects\Social.Api\Domain\obj\Debug\net7.0\Social.Domain.dll
 E:\!C# Projects\Social.Api\Domain\obj\Debug\net7.0\refint\Social.Domain.dll
 E:\!C# Projects\Social.Api\Domain\obj\Debug\net7.0\Social.Domain.pdb
 E:\!C# Projects\Social.Api\Domain\obj\Debug\net7.0\ref\Social.Domain.dll
+E:\!C# Projects\Social.Api\Domain\obj\Debug\net7.0\Social.Domain.csproj.AssemblyReference.cache

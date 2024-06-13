@@ -26,7 +26,7 @@ namespace Social.Api.Controllers.V1
         [HttpGet]
         public async Task<IActionResult> GetAllProfiles()
         {
-            throw new NotImplementedException("Method Not Implemented");
+            //throw new NotImplementedException("Method Not Implemented");
             
             var query = new GetAllUserProfiles();
             //now send this to the mediator
@@ -45,6 +45,7 @@ namespace Social.Api.Controllers.V1
         }
         [Route(ApiRoutes.UserProfiles.IdRoute)]
         [HttpGet]
+        [ValidateGuid("id")]
         public async Task<IActionResult> GetUserProfileById(string id)
         {
             var query = new GetUserProfileById {UserProfileId = Guid.Parse(id)};
@@ -58,6 +59,7 @@ namespace Social.Api.Controllers.V1
         [HttpPatch]
         [Route(ApiRoutes.UserProfiles.IdRoute)]
         [ValidateModel]
+        [ValidateGuid("id")]
         public async Task<IActionResult> UpdateUserProfile(string id, UserProfileCreateUpdate updateProfile)
         {
             var command = _mapper.Map<UpdateUserProfileBasicInfo>(updateProfile);
@@ -69,6 +71,7 @@ namespace Social.Api.Controllers.V1
         }
         [HttpDelete]
         [Route(ApiRoutes.UserProfiles.IdRoute)]
+        [ValidateGuid("id")]
         public async Task<IActionResult> DeleteUserProfile(string id)
         {
             var command = new DeleteUserProfile() { UserProfileId = Guid.Parse(id)};

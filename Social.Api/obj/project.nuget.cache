@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "w2Ah2izyhtVVRnF2Exq/iDKhQmBFTuQ/bJxGaA+9wNOW2lqHbmVHU2vuOmb1zM/YJE8/i5F0yIKbjdiqbflFcg==",
+  "dgSpecHash": "C7Rt+i0Ov9fbcf6lsLjivx6tbzfZNsX5PH98CjSZs3ZZqFSF0fw4V1sF1DZOkLcwRZ8hHpBffHRAKj1fl5I+4Q==",
   "success": true,
   "projectFilePath": "E:\\!C# Projects\\Social.Api\\Social.Api\\Social.Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\eneri\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\eneri\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\eneri\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",
+    "C:\\Users\\eneri\\.nuget\\packages\\fluentvalidation\\11.9.2\\fluentvalidation.11.9.2.nupkg.sha512",
     "C:\\Users\\eneri\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\eneri\\.nuget\\packages\\mediatr\\9.0.0\\mediatr.9.0.0.nupkg.sha512",
     "C:\\Users\\eneri\\.nuget\\packages\\mediatr.extensions.microsoft.dependencyinjection\\9.0.0\\mediatr.extensions.microsoft.dependencyinjection.9.0.0.nupkg.sha512",
