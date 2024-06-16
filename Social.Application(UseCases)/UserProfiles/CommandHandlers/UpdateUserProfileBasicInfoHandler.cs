@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Social.Application_UseCases_.Enums;
 using Social.Application_UseCases_.Models;
+using Social.Domain.Exceptions;
 
 namespace Social.Application_UseCases_.UserProfiles.CommandHandlers
 {
@@ -46,6 +47,20 @@ namespace Social.Application_UseCases_.UserProfiles.CommandHandlers
                 await _datactx.SaveChangesAsync();
 
                 result.PayLoad = userProfile;
+                return result;
+            }
+            catch (UserProfileNotValidException ex)
+            {
+                result.IsError = true;
+                ex.ValidationErrors.ForEach(e =>
+                {
+                    var error = new Error
+                    {
+                        Code = ErrorCode.ValidationError,
+                        Message = $"{ex.Message}"
+                    };
+                    result.Errors.Add(error);
+                });
                 return result;
             }
             catch (Exception ex)

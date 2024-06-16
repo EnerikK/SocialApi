@@ -5,7 +5,7 @@ namespace Social.Api.Extensions
     public static class RegistrarExtensions
     {
         public static void RegisterServices(this WebApplicationBuilder builder,Type scanningType)
-        {//reflection
+        {   //reflection
             var registrars = GetRegistrars<IWebApplicationBuilderRegistar>(scanningType);
 
             foreach (var registrar in registrars)

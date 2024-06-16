@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Social.Domain.Aggregates.UserProfileAggregate;
+using Social.Domain.Validators.PostValidators;
 
 
 namespace Social.Domain.Aggregates.PostAggregate
@@ -30,13 +31,17 @@ namespace Social.Domain.Aggregates.PostAggregate
         //Factories
         public static Post CreatePost(Guid userProfileId , string textContent)
         {
-            return new Post
+            var validator = new PostValidator();
+            var objectToValidate =  new Post
             {
                 UserProfileId = userProfileId ,
                 TextContent = textContent,
                 CreatedDate = DateTime.UtcNow,
                 LastModified = DateTime.UtcNow
             };
+            var validationResult = validator.Validate(objectToValidate);
+            if (validationResult.IsValid) return objectToValidate;
+            
         }
         //Public Methods
         public void UpdatePostText(string newText)
@@ -58,7 +63,6 @@ namespace Social.Domain.Aggregates.PostAggregate
         }
         public void RemoveInteraction(PostInteraction toRemove)
         {
-
             _interactions.Remove(toRemove);
         }
     }

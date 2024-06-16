@@ -1,11 +1,9 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Social.Api.Contracts.Common;
 using Social.Api.Contracts.UserProfile.Requests;
 using Social.Api.Contracts.UserProfile.Responses;
 using Social.Api.Filters;
-using Social.Application_UseCases_.Enums;
 using Social.Application_UseCases_.UserProfiles.Commands;
 using Social.Application_UseCases_.UserProfiles.Queries;
 
@@ -40,8 +38,11 @@ namespace Social.Api.Controllers.V1
         {
             var command = _mapper.Map<CreateUserCommand>(profile);
             var response = await _mediator.Send(command);
+            
             var userProfile = _mapper.Map<UserProfileResponse>(response.PayLoad);
-            return CreatedAtAction(nameof(GetUserProfileById), new {id = userProfile.UserProfileId} , userProfile);
+            
+            return response.IsError ? HandleErrorResponse(response.Errors) : CreatedAtAction(nameof(GetUserProfileById), 
+                new {id = userProfile.UserProfileId} , userProfile);
         }
         [Route(ApiRoutes.UserProfiles.IdRoute)]
         [HttpGet]
@@ -76,7 +77,7 @@ namespace Social.Api.Controllers.V1
         {
             var command = new DeleteUserProfile() { UserProfileId = Guid.Parse(id)};
             var response = await _mediator.Send(command); // send the command down the mediator pipeline
-                                                          // will execute and return a response
+                                                                                  // will execute and return a response
             if (response.IsError) return HandleErrorResponse(response.Errors);
             return NoContent();
         }
