@@ -1,6 +1,6 @@
 ﻿namespace Social.Domain.Exceptions;
 
-internal class NotValidException : Exception
+public class NotValidException : Exception
 {
     internal NotValidException()
     {

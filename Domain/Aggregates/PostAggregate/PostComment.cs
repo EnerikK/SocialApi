@@ -47,7 +47,7 @@ namespace Social.Domain.Aggregates.PostAggregate
             if (validationResult.IsValid) return objectToValidate;
 
             var exception = new PostCommentNotValidException("PostComment is not valid");
-            validationResult.Errors.ForEach(result => exception.Errors.Add(result.ErrorMessage));
+            validationResult.Errors.ForEach(result => exception.ValidationErrors.Add(result.ErrorMessage));
             throw exception;
         }
         //Public Method

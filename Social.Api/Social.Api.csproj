@@ -30,7 +30,6 @@
 
   <ItemGroup>
     <Folder Include="Contracts\Posts\Requests\" />
-    <Folder Include="Contracts\Posts\Responses\" />
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>

@@ -66,6 +66,8 @@ namespace Social.Application_UseCases_.UserProfiles.CommandHandlers
                     Code = ErrorCode.UnknownError,
                     Message = $"{e.Message}"
                 };
+                result.IsError = true;
+                result.Errors.Add(error);
                 return result;
             }
             

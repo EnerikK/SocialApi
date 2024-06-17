@@ -17,7 +17,6 @@ namespace Social.DataAccess
         {
 
         }
-
         //DB Context 
         public DbSet<UserProfile> UserProfiles { get; set; }
         public DbSet<Post> Posts { get; set; }

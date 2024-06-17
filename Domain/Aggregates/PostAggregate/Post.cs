@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Social.Domain.Aggregates.UserProfileAggregate;
+using Social.Domain.Exceptions;
 using Social.Domain.Validators.PostValidators;
 
 
@@ -39,13 +40,28 @@ namespace Social.Domain.Aggregates.PostAggregate
                 CreatedDate = DateTime.UtcNow,
                 LastModified = DateTime.UtcNow
             };
+            
             var validationResult = validator.Validate(objectToValidate);
             if (validationResult.IsValid) return objectToValidate;
-            
+
+            var exception = new PostNotValidException("Post is not valid ");
+            validationResult.Errors.ForEach(result => exception.ValidationErrors.Add(result.ErrorMessage));
+            throw exception;
         }
         //Public Methods
+        /// <summary>
+        /// Update Post Text
+        /// </summary>
+        /// <param name="newText">The updated post text</param>
+        /// <exception cref="PostNotValidException"></exception>
         public void UpdatePostText(string newText)
         {
+            if (string.IsNullOrWhiteSpace(newText))
+            {
+                var exception = new PostNotValidException("Cannot Update Post. The Post Text Is Probably Not Valid");
+                exception.ValidationErrors.Add("The Provided Post Text Is Either Null or WhiteSpace");
+                throw exception;
+            }
             TextContent = newText;
             LastModified = DateTime.UtcNow;
         }
