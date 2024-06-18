@@ -30,6 +30,13 @@ namespace Social.Domain.Aggregates.PostAggregate
         public IEnumerable<PostInteraction> Interactions { get  { return _interactions; } }
 
         //Factories
+        /// <summary>
+        /// Create a new instance of a post 
+        /// </summary>
+        /// <param name="userProfileId">The userprofileId</param>
+        /// <param name="textContent">The Given Post Content</param>
+        /// <returns><see cref="Post"/></returns>
+        /// <exception cref="PostNotValidException"></exception>
         public static Post CreatePost(Guid userProfileId , string textContent)
         {
             var validator = new PostValidator();

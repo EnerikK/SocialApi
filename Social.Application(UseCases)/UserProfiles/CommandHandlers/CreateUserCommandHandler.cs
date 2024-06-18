@@ -57,7 +57,6 @@ namespace Social.Application_UseCases_.UserProfiles.CommandHandlers
                     };
                     result.Errors.Add(error);
                 });
-                return result;
             }
             catch (Exception e)
             {
@@ -70,7 +69,8 @@ namespace Social.Application_UseCases_.UserProfiles.CommandHandlers
                 result.Errors.Add(error);
                 return result;
             }
-            
+
+            return result;
         }
     }
 }

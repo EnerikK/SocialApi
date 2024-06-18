@@ -14,11 +14,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Posts\CommandHandlers\" />
-    <Folder Include="Posts\Commands\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Domain\Social.Domain.csproj" />
     <ProjectReference Include="..\Social.DataAccess\Social.DataAccess.csproj" />
   </ItemGroup>
