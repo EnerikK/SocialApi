@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.ApiExplorer;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
@@ -21,6 +22,13 @@ namespace Social.Api.Options
             {
                 options.SwaggerDoc(description.GroupName,CreateVersionInfo(description));
             }
+
+            var scheme = GetJWTSecurityScheme();
+            options.AddSecurityDefinition(scheme.Reference.Id,scheme);
+            options.AddSecurityRequirement(new OpenApiSecurityRequirement
+            {
+                {scheme,new string[0]}
+            });
         }
         private OpenApiInfo CreateVersionInfo(ApiVersionDescription description)
         {
@@ -36,6 +44,25 @@ namespace Social.Api.Options
             }
 
             return info;
+        }
+
+        private OpenApiSecurityScheme GetJWTSecurityScheme()
+        {
+            return new OpenApiSecurityScheme
+            {
+                Name = "JWT Authentication",
+                Description = "Provide a JWT Bearer",
+                In = ParameterLocation.Header,
+                Type = SecuritySchemeType.Http,
+                Scheme = "Bearer",
+                BearerFormat = "JWT",
+                Reference = new OpenApiReference
+                {
+                    Id = JwtBearerDefaults.AuthenticationScheme,
+                    Type = ReferenceType.SecurityScheme
+                }
+            };
+
         }
     }
 }

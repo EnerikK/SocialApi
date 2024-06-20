@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "C7Rt+i0Ov9fbcf6lsLjivx6tbzfZNsX5PH98CjSZs3ZZqFSF0fw4V1sF1DZOkLcwRZ8hHpBffHRAKj1fl5I+4Q==",
+  "dgSpecHash": "0AJinrCaUzy7f8OVimpfphZgEStz0U9duZxu44df6StPICGXrC0m8BYQQSBJ+hwfubOIwJWzyQAxrnTpl3m1og==",
   "success": true,
   "projectFilePath": "E:\\!C# Projects\\Social.Api\\Social.Api\\Social.Api.csproj",
   "expectedPackageFiles": [
@@ -11,6 +11,7 @@
     "C:\\Users\\eneri\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\eneri\\.nuget\\packages\\mediatr\\9.0.0\\mediatr.9.0.0.nupkg.sha512",
     "C:\\Users\\eneri\\.nuget\\packages\\mediatr.extensions.microsoft.dependencyinjection\\9.0.0\\mediatr.extensions.microsoft.dependencyinjection.9.0.0.nupkg.sha512",
+    "C:\\Users\\eneri\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\7.0.20\\microsoft.aspnetcore.authentication.jwtbearer.7.0.20.nupkg.sha512",
     "C:\\Users\\eneri\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\7.0.20\\microsoft.aspnetcore.cryptography.internal.7.0.20.nupkg.sha512",
     "C:\\Users\\eneri\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\7.0.20\\microsoft.aspnetcore.cryptography.keyderivation.7.0.20.nupkg.sha512",
     "C:\\Users\\eneri\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\7.0.20\\microsoft.aspnetcore.identity.entityframeworkcore.7.0.20.nupkg.sha512",

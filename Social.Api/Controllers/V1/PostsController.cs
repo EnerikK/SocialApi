@@ -34,7 +34,6 @@ namespace Social.Api.Controllers.V1
             var map = _mapper.Map<List<PostResponse>>(result.PayLoad);
             return result.IsError ? HandleErrorResponse(result.Errors) : Ok(map);
         }
-
         [HttpGet]
         [Route(ApiRoutes.Posts.IdRoute)]
         [ValidateGuid("id")]
@@ -44,7 +43,7 @@ namespace Social.Api.Controllers.V1
             var query = new GetPostById() { PostId = postId };
             var result = await _mediator.Send(query);
             var map = _mapper.Map<PostResponse>(result.PayLoad);
-            return result.IsError ? HandleErrorResponse(result.Errors) : Ok();
+            return result.IsError ? HandleErrorResponse(result.Errors) : Ok(map);
         }
         [HttpPost]
         [ValidateModel]
@@ -115,6 +114,7 @@ namespace Social.Api.Controllers.V1
         public async Task<IActionResult> AddCommentToPost(string postId, [FromBody] PostCommentCreate comment)
         {
             var isValidGuid = Guid.TryParse(comment.UserProfileId, out var userProfileId);
+            
             if (!isValidGuid)
             {
                 var apiError = new ErrorResponse();

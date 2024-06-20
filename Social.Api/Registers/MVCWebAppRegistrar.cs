@@ -20,9 +20,8 @@ namespace Social.Api.Registers
             });
 
             app.UseHttpsRedirection();
-
+            app.UseAuthentication();
             app.UseAuthorization();
-
             app.MapControllers();
         }
     }

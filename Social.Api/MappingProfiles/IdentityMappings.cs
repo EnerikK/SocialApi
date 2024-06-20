@@ -1,0 +1,15 @@
+﻿using AutoMapper;
+using Social.Api.Contracts.Identity;
+using Social.Application_UseCases_.Identity.Commands;
+
+namespace Social.Api.MappingProfiles;
+
+public class IdentityMappings : Profile
+{
+    public IdentityMappings()
+    {
+        CreateMap<UserRegistration, RegisterIdentify>();
+        CreateMap<Login, LoginCommand>();
+    }
+        
+}

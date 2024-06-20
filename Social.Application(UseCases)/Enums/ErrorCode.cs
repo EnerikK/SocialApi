@@ -5,5 +5,10 @@ public enum ErrorCode
     NotFound = 1,
     ServerError = 2,
     ValidationError = 3,
-    UnknownError = 4
+    IdentityUserAlreadyExists = 4,
+    IdentityCreationFailed = 5,
+    IdentityUserDoesNotExist = 6,
+    IncorrectPassword = 7,
+    UnknownError = 8,
+
 }
