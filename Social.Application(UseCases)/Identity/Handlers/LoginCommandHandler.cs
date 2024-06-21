@@ -8,6 +8,7 @@ using Social.Application_UseCases_.Identity.Commands;
 using Social.Application_UseCases_.Models;
 using Social.Application_UseCases_.Services;
 using Social.DataAccess;
+using Social.Domain.Aggregates.UserProfileAggregate;
 
 namespace Social.Application_UseCases_.Identity.Handlers;
 
@@ -49,7 +50,7 @@ public class LoginCommandHandler : IRequestHandler<LoginCommand,OperationResult<
                 var error = new Error
                 {
                     Code = ErrorCode.IncorrectPassword,
-                    Message = $"Wrong Password"
+                    Message = $"Wrong Password you dummy , please try again :3"
                 };
                 result.IsError = true;
                 result.Errors.Add(error);
@@ -57,18 +58,8 @@ public class LoginCommandHandler : IRequestHandler<LoginCommand,OperationResult<
             }
 
             var userProfile =
-                await _dataContext.UserProfiles.FirstOrDefaultAsync(userP => userP.IdentityId == identityUser.Id);
-            var claimsIdentity = new ClaimsIdentity(new Claim[]
-            {
-                new Claim(JwtRegisteredClaimNames.Sub, identityUser.Email),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                new Claim(JwtRegisteredClaimNames.Email, identityUser.Email),
-                new Claim("IdentityId", identityUser.Id),
-                new Claim("UserProfileId", userProfile.UserProfileId.ToString())
-            });
-
-            var token = _identityService.CreateSecurityToken(claimsIdentity);
-            result.PayLoad = _identityService.WriteToken(token);
+                await _dataContext.UserProfiles.FirstOrDefaultAsync(userP => userP.IdentityId == identityUser.Id,cancellationToken);
+            result.PayLoad = GetJWTString(identityUser, userProfile);
             return result;
         }
         catch (Exception e)
@@ -84,4 +75,21 @@ public class LoginCommandHandler : IRequestHandler<LoginCommand,OperationResult<
 
         return result;
     }
+
+    //Small refactoring
+    private string GetJWTString(IdentityUser identityUser, UserProfile userProfile)
+    {
+        var claimsIdentity = new ClaimsIdentity(new Claim[]
+        {
+             new Claim(JwtRegisteredClaimNames.Sub, identityUser.Email),
+             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+             new Claim(JwtRegisteredClaimNames.Email, identityUser.Email),
+             new Claim("IdentityId", identityUser.Id),
+             new Claim("UserProfileId", userProfile.UserProfileId.ToString())
+         });
+     
+         var token = _identityService.CreateSecurityToken(claimsIdentity);
+         return _identityService.WriteToken(token);
+    }
+    
 }

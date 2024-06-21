@@ -23,7 +23,7 @@ public class CreatePostHandler : IRequestHandler<CreatePost,OperationResult<Post
         {
             var post = Post.CreatePost(request.UserProfileId, request.TextContent);
             _dataContext.Posts.Add(post);
-            await _dataContext.SaveChangesAsync();
+            await _dataContext.SaveChangesAsync(cancellationToken);
             result.PayLoad = post;
         }
         catch (PostNotValidException ex)

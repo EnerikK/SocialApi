@@ -1,10 +1,14 @@
 ﻿using System.Reflection.Metadata;
+using System.Security.Claims;
 using AutoMapper;
 using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Social.Api.Contracts.Common;
 using Social.Api.Contracts.Posts.Requests;
 using Social.Api.Contracts.Posts.Responses;
+using Social.Api.Extensions;
 using Social.Api.Filters;
 using Social.Application_UseCases_.Posts.Commands;
 using Social.Application_UseCases_.Posts.Queries;
@@ -16,6 +20,7 @@ namespace Social.Api.Controllers.V1
     [ApiVersion("1.0")]
     [Route(ApiRoutes.BaseRoute)]
     [ApiController]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class PostsController : BaseController
     {
         private readonly IMediator _mediator;
@@ -28,37 +33,38 @@ namespace Social.Api.Controllers.V1
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllPosts()
+        public async Task<IActionResult> GetAllPosts(CancellationToken cancellationToken)
         {
-            var result = await _mediator.Send(new GetAllPosts());
+            var result = await _mediator.Send(new GetAllPosts(),cancellationToken);
             var map = _mapper.Map<List<PostResponse>>(result.PayLoad);
             return result.IsError ? HandleErrorResponse(result.Errors) : Ok(map);
         }
         [HttpGet]
         [Route(ApiRoutes.Posts.IdRoute)]
         [ValidateGuid("id")]
-        public async Task<IActionResult> GetById(string id)
+        public async Task<IActionResult> GetById(string id ,CancellationToken cancellationToken)
         {
             var postId = Guid.Parse(id);
             var query = new GetPostById() { PostId = postId };
-            var result = await _mediator.Send(query);
+            var result = await _mediator.Send(query,cancellationToken);
             var map = _mapper.Map<PostResponse>(result.PayLoad);
             return result.IsError ? HandleErrorResponse(result.Errors) : Ok(map);
         }
         [HttpPost]
         [ValidateModel]
-        public async Task<IActionResult> CreatePost([FromBody] PostCreate newPost)
+        public async Task<IActionResult> CreatePost([FromBody] PostCreate newPost ,CancellationToken cancellationToken)
         {
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+            var userProfileId = identity?.FindFirst("UserProfileId")?.Value;
             var command = new CreatePost()
             {
-                UserProfileId = Guid.Parse(newPost.UserProfileId),
+                UserProfileId = Guid.Parse(userProfileId),
                 TextContent = newPost.TextContent
             };
-            var result = await _mediator.Send(command);
+            var result = await _mediator.Send(command,cancellationToken);
             var map = _mapper.Map<PostResponse>(result.PayLoad);
 
-            return result.IsError
-                ? HandleErrorResponse(result.Errors)
+            return result.IsError ? HandleErrorResponse(result.Errors) 
                 : CreatedAtAction(nameof(GetById), new { id = result.PayLoad.UserProfileId }, map);
 
         }
@@ -66,27 +72,33 @@ namespace Social.Api.Controllers.V1
         [Route(ApiRoutes.Posts.IdRoute)]
         [ValidateGuid("id")]
         [ValidateModel]
-        public async Task<IActionResult> UpdatePostText([FromBody] PostUpdate updatedPost, string id)
+        public async Task<IActionResult> UpdatePostText([FromBody] PostUpdate updatedPost, string id,CancellationToken cancellationToken)
         {
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+            var userProfileId = identity?.FindFirst("UserProfileId")?.Value;
             var command = new UpdatePostText()
             {
                 NewText = updatedPost.text,
-                PostId = Guid.Parse(id)
+                PostId = Guid.Parse(id),
+                UserProfileId = Guid.Parse(userProfileId)
             };
-            var result = await _mediator.Send(command);
+            var result = await _mediator.Send(command,cancellationToken);
 
             return result.IsError ? HandleErrorResponse(result.Errors) : NoContent();
         }
         [HttpDelete]
         [Route(ApiRoutes.Posts.IdRoute)]
         [ValidateGuid("id")]
-        public async Task<IActionResult> DeletePost(string id)
+        public async Task<IActionResult> DeletePost(string id,CancellationToken cancellationToken)
         {
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+            var userProfileId = identity?.FindFirst("UserProfileId")?.Value;
             var command = new DeletePost()
             {
-                PostId = Guid.Parse(id)
+                PostId = Guid.Parse(id),
+                UserProfileId = Guid.Parse(userProfileId)
             };
-            var result = await _mediator.Send(command);
+            var result = await _mediator.Send(command,cancellationToken);
 
             return result.IsError ? HandleErrorResponse(result.Errors) : NoContent();
         }
@@ -94,13 +106,13 @@ namespace Social.Api.Controllers.V1
         [HttpGet]
         [Route(ApiRoutes.Posts.PostComment)]
         [ValidateGuid("postId")]
-        public async Task<IActionResult> GetCommentByPostId(string postId)
+        public async Task<IActionResult> GetCommentByPostId(string postId,CancellationToken cancellationToken)
         {
             var query = new GetPostComments()
             {
                 PostId = Guid.Parse(postId)
             };
-            var result = await _mediator.Send(query);
+            var result = await _mediator.Send(query,cancellationToken);
 
             if (result.IsError) HandleErrorResponse(result.Errors);
             var comments = _mapper.Map<List<PostCommentResponse>>(result.PayLoad);
@@ -111,7 +123,7 @@ namespace Social.Api.Controllers.V1
         [Route(ApiRoutes.Posts.PostComment)]
         [ValidateGuid("postId")]
         [ValidateModel]
-        public async Task<IActionResult> AddCommentToPost(string postId, [FromBody] PostCommentCreate comment)
+        public async Task<IActionResult> AddCommentToPost(string postId, [FromBody] PostCommentCreate comment,CancellationToken cancellationToken)
         {
             var isValidGuid = Guid.TryParse(comment.UserProfileId, out var userProfileId);
             
@@ -133,7 +145,7 @@ namespace Social.Api.Controllers.V1
                 CommentText = comment.text
             };
 
-            var result = await _mediator.Send(command);
+            var result = await _mediator.Send(command,cancellationToken);
             if (result.IsError) return HandleErrorResponse(result.Errors);
             var newComment = _mapper.Map<PostCommentResponse>(result.PayLoad);
             return Ok(newComment);

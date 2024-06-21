@@ -28,7 +28,7 @@ namespace Social.Application_UseCases_.UserProfiles.CommandHandlers
             try
             {
                 var userProfile = await _datactx.UserProfiles
-                    .FirstOrDefaultAsync(userProfile => userProfile.UserProfileId == request.UserProfileId);
+                    .FirstOrDefaultAsync(userProfile => userProfile.UserProfileId == request.UserProfileId,cancellationToken: cancellationToken);
 
                 if (userProfile is null)
                 {
@@ -44,7 +44,7 @@ namespace Social.Application_UseCases_.UserProfiles.CommandHandlers
                 userProfile.UpdateBasicInfo(basicInfo);
 
                 _datactx.UserProfiles.Update(userProfile);
-                await _datactx.SaveChangesAsync();
+                await _datactx.SaveChangesAsync(cancellationToken);
 
                 result.PayLoad = userProfile;
                 return result;

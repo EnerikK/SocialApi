@@ -22,7 +22,7 @@ namespace Social.Application_UseCases_.UserProfiles.QueryHandlers
         public async Task<OperationResult<IEnumerable<UserProfile>>> Handle(GetAllUserProfiles request, CancellationToken cancellationToken)
         {
             var result = new OperationResult<IEnumerable<UserProfile>>();
-            result.PayLoad = await _Datactx.UserProfiles.ToListAsync();
+            result.PayLoad = await _Datactx.UserProfiles.ToListAsync(cancellationToken);
             return result;
         }
     }

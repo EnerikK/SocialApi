@@ -38,7 +38,7 @@ public class AddPostCommandHandler : IRequestHandler<AddPostComment,OperationRes
             var comment = PostComment.CreatePostComment(request.PostId, request.CommentText, request.UserProfileId);
             post.AddPostComment(comment);
             _dataContext.Posts.Update(post);
-            await _dataContext.SaveChangesAsync();
+            await _dataContext.SaveChangesAsync(cancellationToken);
             result.PayLoad = comment;
         }
         catch (PostCommentNotValidException ex)

@@ -23,7 +23,7 @@ public class UpdatePostHandler : IRequestHandler<UpdatePostText,OperationResult<
 
         try
         {
-            var post = await _dataContext.Posts.FirstOrDefaultAsync(post => post.PostId == request.PostId);
+            var post = await _dataContext.Posts.FirstOrDefaultAsync(post => post.PostId == request.PostId,cancellationToken: cancellationToken);
             if (post is null)
             {
                 result.IsError = true;
@@ -36,8 +36,20 @@ public class UpdatePostHandler : IRequestHandler<UpdatePostText,OperationResult<
                 return result;
             }
 
+            if (post.UserProfileId != request.UserProfileId)
+            {
+                result.IsError = true;
+                var error = new Error
+                {
+                    Code = ErrorCode.UpdatePostNotPossible,
+                    Message = $"Only the one that posted the post can update the post"
+                };
+                result.Errors.Add(error);
+                return result;
+            }
+
             post.UpdatePostText(request.NewText);
-            await _dataContext.SaveChangesAsync();
+            await _dataContext.SaveChangesAsync(cancellationToken);
             result.PayLoad = post;
         }
         catch (PostNotValidException e)

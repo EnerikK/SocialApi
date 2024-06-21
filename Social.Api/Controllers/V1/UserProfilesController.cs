@@ -25,35 +25,24 @@ namespace Social.Api.Controllers.V1
             _mapper = mapper;
         }
         [HttpGet]
-        public async Task<IActionResult> GetAllProfiles()
+        public async Task<IActionResult> GetAllProfiles(CancellationToken cancellationToken)
         {
             //throw new NotImplementedException("Method Not Implemented");
             
             var query = new GetAllUserProfiles();
             //now send this to the mediator
-            var response = await _mediator.Send(query);
+            var response = await _mediator.Send(query,cancellationToken);
             var profiles = _mapper.Map<List<UserProfileResponse>>(response.PayLoad);
             return Ok(profiles);
         }
-        [HttpPost]
-        [ValidateModel]
-        public async Task<IActionResult> CreateUserProfile([FromBody] UserProfileCreateUpdate profile)
-        {
-            var command = _mapper.Map<CreateUserCommand>(profile);
-            var response = await _mediator.Send(command);
-            
-            var userProfile = _mapper.Map<UserProfileResponse>(response.PayLoad);
-            
-            return response.IsError ? HandleErrorResponse(response.Errors) : CreatedAtAction(nameof(GetUserProfileById), 
-                new {id = userProfile.UserProfileId} , userProfile);
-        }
+        
         [Route(ApiRoutes.UserProfiles.IdRoute)]
         [HttpGet]
         [ValidateGuid("id")]
-        public async Task<IActionResult> GetUserProfileById(string id)
+        public async Task<IActionResult> GetUserProfileById(string id,CancellationToken cancellationToken)
         {
             var query = new GetUserProfileById {UserProfileId = Guid.Parse(id)};
-            var response = await _mediator.Send(query);
+            var response = await _mediator.Send(query,cancellationToken);
 
             if (response.IsError) return HandleErrorResponse(response.Errors);
             
@@ -64,11 +53,11 @@ namespace Social.Api.Controllers.V1
         [Route(ApiRoutes.UserProfiles.IdRoute)]
         [ValidateModel]
         [ValidateGuid("id")]
-        public async Task<IActionResult> UpdateUserProfile(string id, UserProfileCreateUpdate updateProfile)
+        public async Task<IActionResult> UpdateUserProfile(string id, UserProfileCreateUpdate updateProfile,CancellationToken cancellationToken)
         {
             var command = _mapper.Map<UpdateUserProfileBasicInfo>(updateProfile);
             command.UserProfileId = Guid.Parse(id);
-            var response = await _mediator.Send(command);
+            var response = await _mediator.Send(command,cancellationToken);
 
             if (response.IsError) return HandleErrorResponse(response.Errors);
             return NoContent();
@@ -76,10 +65,10 @@ namespace Social.Api.Controllers.V1
         [HttpDelete]
         [Route(ApiRoutes.UserProfiles.IdRoute)]
         [ValidateGuid("id")]
-        public async Task<IActionResult> DeleteUserProfile(string id)
+        public async Task<IActionResult> DeleteUserProfile(string id , CancellationToken cancellationToken)
         {
             var command = new DeleteUserProfile() { UserProfileId = Guid.Parse(id)};
-            var response = await _mediator.Send(command); // send the command down the mediator pipeline
+            var response = await _mediator.Send(command,cancellationToken); // send the command down the mediator pipeline
                                                                                   // will execute and return a response
             if (response.IsError) return HandleErrorResponse(response.Errors);
             return NoContent();

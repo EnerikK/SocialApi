@@ -22,11 +22,11 @@ public class BaseController : ControllerBase
             return NotFound(apiError);
         }
         
-        apiError.StatusCode = 2;
-        apiError.StatusMessage = "Server Error";
+        apiError.StatusCode = 400;
+        apiError.StatusMessage = "Bad request";
         apiError.TimeStamp = DateTime.Now;
-        apiError.Errors.Add("Unknown Error");
-        return StatusCode(2,apiError);
-        
+        errors.ForEach(error => apiError.Errors.Add(error.Message));
+        return StatusCode(400, apiError);
+
     }
 }

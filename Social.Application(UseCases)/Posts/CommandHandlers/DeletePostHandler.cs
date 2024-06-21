@@ -21,7 +21,7 @@ public class DeletePostHandler : IRequestHandler<DeletePost,OperationResult<Post
         var result = new OperationResult<Post>();
         try
         {
-            var post = await _dataContext.Posts.FirstOrDefaultAsync(post => post.PostId == request.PostId);
+            var post = await _dataContext.Posts.FirstOrDefaultAsync(post => post.PostId == request.PostId,cancellationToken: cancellationToken);
             if (post is null)
             {
                 result.IsError = true;
@@ -34,8 +34,20 @@ public class DeletePostHandler : IRequestHandler<DeletePost,OperationResult<Post
                 return result;
             }
 
+            if (post.UserProfileId != request.UserProfileId)
+            {
+                result.IsError = true;
+                var error = new Error
+                {
+                    Code = ErrorCode.DeletePostNotPossible,
+                    Message = $"Only the one that posted the post can delete the post"
+                };
+                result.Errors.Add(error);
+                return result;
+            }
+
             _dataContext.Posts.Remove(post);
-            await _dataContext.SaveChangesAsync();
+            await _dataContext.SaveChangesAsync(cancellationToken);
             result.PayLoad = post;
         }
         catch (Exception e)

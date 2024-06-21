@@ -9,6 +9,8 @@ public enum ErrorCode
     IdentityCreationFailed = 5,
     IdentityUserDoesNotExist = 6,
     IncorrectPassword = 7,
-    UnknownError = 8,
+    UpdatePostNotPossible = 8,
+    DeletePostNotPossible = 9,
+    UnknownError = 10,
 
 }

@@ -25,7 +25,7 @@ namespace Social.Application_UseCases_.UserProfiles.CommandHandlers
         {
             var result = new OperationResult<UserProfile>();
             var userProfile = await _datactx.UserProfiles.FirstOrDefaultAsync(
-                userprofile => userprofile.UserProfileId == request.UserProfileId);
+                userprofile => userprofile.UserProfileId == request.UserProfileId,cancellationToken: cancellationToken);
 
             if (userProfile is null) //Checking if the userprofile with this specific id exists
             {
@@ -35,7 +35,7 @@ namespace Social.Application_UseCases_.UserProfiles.CommandHandlers
                 return result;
             } 
             _datactx.UserProfiles.Remove(userProfile);
-            await _datactx.SaveChangesAsync();
+            await _datactx.SaveChangesAsync(cancellationToken);
             result.PayLoad = userProfile;
             return result;
         }

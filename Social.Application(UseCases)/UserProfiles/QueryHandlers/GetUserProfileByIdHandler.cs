@@ -24,7 +24,7 @@ namespace Social.Application_UseCases_.UserProfiles.QueryHandlers
         {
             var result = new OperationResult<UserProfile>();
             var profile  = await _datactx.UserProfiles.FirstOrDefaultAsync(
-                userProfile => userProfile.UserProfileId == request.UserProfileId);
+                userProfile => userProfile.UserProfileId == request.UserProfileId,cancellationToken: cancellationToken);
             
             if (profile is null) //Checking if the userprofile with this specific id exists
             {

@@ -14,6 +14,7 @@ using Social.Application_UseCases_.Services;
 using Social.DataAccess;
 using Social.Domain.Aggregates.UserProfileAggregate;
 using Social.Domain.Exceptions;
+using JwtRegisteredClaimNames = System.IdentityModel.Tokens.Jwt.JwtRegisteredClaimNames;
 
 namespace Social.Application_UseCases_.Identity.Handlers;
 
@@ -24,11 +25,11 @@ public class RegisterIdentifyHandler : IRequestHandler<RegisterIdentify,Operatio
     private readonly IdentityService _identityService;
     
     public RegisterIdentifyHandler(DataContext dataContext, UserManager<IdentityUser> userManager,
-        IOptions<IdentityService> identityService)
+        IdentityService identityService)
     {
         _dataContext = dataContext;
         _userManager = userManager;
-        _identityService = identityService.Value;
+        _identityService = identityService;
     }
 
     public async Task<OperationResult<string>> Handle(RegisterIdentify request, CancellationToken cancellationToken)
@@ -40,26 +41,17 @@ public class RegisterIdentifyHandler : IRequestHandler<RegisterIdentify,Operatio
             var creationValidated = await ValidateIdentityDoesNotExist(result, request);
             if (!creationValidated) return result;
 
-            await using var transaction = _dataContext.Database.BeginTransaction();
+            await using var transaction = await this._dataContext.Database.BeginTransactionAsync(cancellationToken);
             
-            var identity = await CreateIdentityUserAsync(result, request, transaction);
+            var identity = await CreateIdentityUserAsync(result, request, transaction,cancellationToken);
             if (identity == null) return result;
 
-            var profile = await CreateUserProfileAsync(result, request, transaction, identity);
-            await transaction.CommitAsync();
+            var profile = await CreateUserProfileAsync(result, request, transaction, identity,cancellationToken);
+            await transaction.CommitAsync(cancellationToken);
 
-            var claimsIdentity = new ClaimsIdentity(new Claim[]
-            {
-                new Claim(JwtRegisteredClaimNames.Sub, identity.Email),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                new Claim(JwtRegisteredClaimNames.Email, identity.Email),
-                new Claim("IdentityId", identity.Id),
-                new Claim("UserProfileId", profile.UserProfileId.ToString())
-            });
-            
-            var token = _identityService.CreateSecurityToken(claimsIdentity);
-            result.PayLoad = _identityService.WriteToken(token);
-            
+
+            result.PayLoad = GetJWTString(identity, profile);
+            return result;
         }
         catch (UserProfileNotValidException ex)
         {
@@ -106,13 +98,13 @@ public class RegisterIdentifyHandler : IRequestHandler<RegisterIdentify,Operatio
     }
 
     private async Task<IdentityUser> CreateIdentityUserAsync(OperationResult<string> result,
-        RegisterIdentify request, IDbContextTransaction transaction)
+        RegisterIdentify request, IDbContextTransaction transaction,CancellationToken cancellationToken)
     {
         var identity = new IdentityUser {Email = request.Username, UserName = request.Username};
         var createdIdentity = await _userManager.CreateAsync(identity, request.Password);
         if (!createdIdentity.Succeeded)
         {
-            await transaction.RollbackAsync();
+            await transaction.RollbackAsync(cancellationToken);
             result.IsError = true;
 
             foreach (var identityError in createdIdentity.Errors)
@@ -128,7 +120,7 @@ public class RegisterIdentifyHandler : IRequestHandler<RegisterIdentify,Operatio
     }
 
     private async Task<UserProfile> CreateUserProfileAsync(OperationResult<string> result,
-        RegisterIdentify request, IDbContextTransaction transaction, IdentityUser identity)
+        RegisterIdentify request, IDbContextTransaction transaction, IdentityUser identity,CancellationToken cancellationToken)
     {
         try
         {
@@ -137,13 +129,29 @@ public class RegisterIdentifyHandler : IRequestHandler<RegisterIdentify,Operatio
 
             var profile = UserProfile.CreateUserProfile(identity.Id, profileInfo);
             _dataContext.UserProfiles.Add(profile);
-            await _dataContext.SaveChangesAsync();
+            await _dataContext.SaveChangesAsync(cancellationToken);
             return profile;
         }
         catch (Exception e)
         {
-            await transaction.RollbackAsync();
+            await transaction.RollbackAsync(cancellationToken);
             throw;
         }
+    }
+    
+    //Small refactoring
+    private string GetJWTString(IdentityUser identityUser, UserProfile userProfile)
+    {
+        var claimsIdentity = new ClaimsIdentity(new Claim[]
+        {
+            new Claim(JwtRegisteredClaimNames.Sub, identityUser.Email),
+            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+            new Claim(JwtRegisteredClaimNames.Email, identityUser.Email),
+            new Claim("IdentityId", identityUser.Id),
+            new Claim("UserProfileId", userProfile.UserProfileId.ToString())
+        });
+     
+        var token = _identityService.CreateSecurityToken(claimsIdentity);
+        return _identityService.WriteToken(token);
     }
 }

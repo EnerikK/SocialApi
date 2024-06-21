@@ -9,7 +9,7 @@ namespace Social.Api.Controllers.V2
     {
         [HttpGet]
         [Route("{id}")]
-        public IActionResult GetById(int id)
+        public IActionResult GetById(int id,CancellationToken cancellationToken)
         {
             return Ok();
         }
