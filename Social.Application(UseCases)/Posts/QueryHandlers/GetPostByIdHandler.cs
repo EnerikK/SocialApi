@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Social.Application_UseCases_.Enums;
 using Social.Application_UseCases_.Models;
+using Social.Application_UseCases_.Posts.CommandHandlers;
 using Social.Application_UseCases_.Posts.Queries;
 using Social.DataAccess;
 using Social.Domain.Aggregates.PostAggregate;
@@ -23,10 +24,7 @@ public class GetPostByIdHandler : IRequestHandler<GetPostById,OperationResult<Po
             
         if (post is null) //Checking if the userprofile with this specific id exists
         {
-            result.IsError = true;
-            var error = new Error { Code = ErrorCode.NotFound, Message = $"Post with Id {request.PostId} not found"};
-            result.Errors.Add(error);
-            return result;
+            result.AddError(ErrorCode.NotFound,string.Format(PostErrorMessages.PostNotFound,request.PostId));
         }
 
         result.PayLoad = post;

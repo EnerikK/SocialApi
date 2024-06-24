@@ -24,25 +24,12 @@ public class DeletePostHandler : IRequestHandler<DeletePost,OperationResult<Post
             var post = await _dataContext.Posts.FirstOrDefaultAsync(post => post.PostId == request.PostId,cancellationToken: cancellationToken);
             if (post is null)
             {
-                result.IsError = true;
-                var error = new Error
-                {
-                    Code = ErrorCode.NotFound,
-                    Message = $"No Post Found With ID {request.PostId}"
-                };
-                result.Errors.Add(error);
-                return result;
+                result.AddError(ErrorCode.NotFound,string.Format(PostErrorMessages.PostNotFound,request.PostId));
             }
 
             if (post.UserProfileId != request.UserProfileId)
             {
-                result.IsError = true;
-                var error = new Error
-                {
-                    Code = ErrorCode.DeletePostNotPossible,
-                    Message = $"Only the one that posted the post can delete the post"
-                };
-                result.Errors.Add(error);
+                result.AddError(ErrorCode.DeletePostNotPossible,PostErrorMessages.PostDeleteNotPossible);
                 return result;
             }
 
@@ -52,13 +39,7 @@ public class DeletePostHandler : IRequestHandler<DeletePost,OperationResult<Post
         }
         catch (Exception e)
         {
-            var error = new Error
-            {
-                Code = ErrorCode.UnknownError,
-                Message = $"{e.Message}"
-            };
-            result.IsError = true;
-            result.Errors.Add(error);
+            result.AddUnknownError(e.Message);
         }
 
         return result;

@@ -26,25 +26,13 @@ public class UpdatePostHandler : IRequestHandler<UpdatePostText,OperationResult<
             var post = await _dataContext.Posts.FirstOrDefaultAsync(post => post.PostId == request.PostId,cancellationToken: cancellationToken);
             if (post is null)
             {
-                result.IsError = true;
-                var error = new Error
-                {
-                    Code = ErrorCode.NotFound,
-                    Message = $"No Post Found With ID {request.PostId}"
-                };
-                result.Errors.Add(error);
+                result.AddError(ErrorCode.NotFound,string.Format(PostErrorMessages.PostNotFound,request.PostId));
                 return result;
             }
 
             if (post.UserProfileId != request.UserProfileId)
             {
-                result.IsError = true;
-                var error = new Error
-                {
-                    Code = ErrorCode.UpdatePostNotPossible,
-                    Message = $"Only the one that posted the post can update the post"
-                };
-                result.Errors.Add(error);
+                result.AddError(ErrorCode.UpdatePostNotPossible,PostErrorMessages.PostUpdateNotPossible);
                 return result;
             }
 
@@ -52,30 +40,14 @@ public class UpdatePostHandler : IRequestHandler<UpdatePostText,OperationResult<
             await _dataContext.SaveChangesAsync(cancellationToken);
             result.PayLoad = post;
         }
-        catch (PostNotValidException e)
+        catch (PostNotValidException ex)
         {
-            result.IsError = true;
-            e.ValidationErrors.ForEach(resultError =>
-            {
-                var error = new Error
-                {
-                    Code = ErrorCode.ValidationError,
-                    Message = $"{e.Message}"
-                };
-                result.Errors.Add(error);
-            });
+            ex.ValidationErrors.ForEach(error => result.AddError(ErrorCode.ValidationError,error));
         }
-        catch (Exception ex)
+        catch (Exception e)
         {
-            var error = new Error
-            {
-                Code = ErrorCode.UnknownError,
-                Message = $"{ex.Message}"
-            };
-            result.IsError = true;
-            result.Errors.Add(error);
+            result.AddUnknownError(e.Message);
         }
-
         return result;
     }
 }

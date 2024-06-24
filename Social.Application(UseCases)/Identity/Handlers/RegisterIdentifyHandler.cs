@@ -38,63 +38,36 @@ public class RegisterIdentifyHandler : IRequestHandler<RegisterIdentify,Operatio
 
         try
         {
-            var creationValidated = await ValidateIdentityDoesNotExist(result, request);
-            if (!creationValidated) return result;
+            await ValidateIdentityDoesNotExist(result, request);
+            if (result.IsError) return result;
 
-            await using var transaction = await this._dataContext.Database.BeginTransactionAsync(cancellationToken);
+            await using var transaction = await _dataContext.Database.BeginTransactionAsync(cancellationToken);
             
             var identity = await CreateIdentityUserAsync(result, request, transaction,cancellationToken);
-            if (identity == null) return result;
+            if (result.IsError) return result;
 
             var profile = await CreateUserProfileAsync(result, request, transaction, identity,cancellationToken);
             await transaction.CommitAsync(cancellationToken);
-
 
             result.PayLoad = GetJWTString(identity, profile);
             return result;
         }
         catch (UserProfileNotValidException ex)
         {
-            result.IsError = true;
-            ex.ValidationErrors.ForEach(valError =>
-            {
-                var error = new Error
-                {
-                    Code = ErrorCode.ValidationError,
-                    Message = $"{ex.Message}"
-                };
-                result.IsError = true;
-                result.Errors.Add(error);
-            });
+            ex.ValidationErrors.ForEach(error => result.AddError(ErrorCode.ValidationError, error));
         }
         catch (Exception e)
         {
-            var error = new Error
-            {
-                Code = ErrorCode.UnknownError,
-                Message = $"{e.Message}"
-            };
-            result.IsError = true;
-            result.Errors.Add(error);
+            result.AddUnknownError(e.Message);
         }
-
         return result;
     }
-     private async Task<bool> ValidateIdentityDoesNotExist(OperationResult<string> result,
+     private async Task ValidateIdentityDoesNotExist(OperationResult<string> result,
          RegisterIdentify request)
     {
         var existingIdentity = await _userManager.FindByEmailAsync(request.Username);
 
-        if (existingIdentity != null)
-        {
-            result.IsError = true;
-            var error = new Error { Code = ErrorCode.IdentityUserAlreadyExists, 
-                Message = $"Provided email address already exists. Cannot register new user"};
-            result.Errors.Add(error);
-            return false;
-        }
-
-        return true;
+        if(existingIdentity != null) result.AddError(ErrorCode.IdentityUserAlreadyExists,ErrorMessages.UserAlreadyExists);
     }
 
     private async Task<IdentityUser> CreateIdentityUserAsync(OperationResult<string> result,
@@ -105,20 +78,14 @@ public class RegisterIdentifyHandler : IRequestHandler<RegisterIdentify,Operatio
         if (!createdIdentity.Succeeded)
         {
             await transaction.RollbackAsync(cancellationToken);
-            result.IsError = true;
 
             foreach (var identityError in createdIdentity.Errors)
             {
-                var error = new Error { Code = ErrorCode.IdentityCreationFailed, 
-                    Message = identityError.Description};
-                result.Errors.Add(error);
+                result.AddError(ErrorCode.IdentityCreationFailed,identityError.Description);
             }
-            return null;
         }
-
         return identity;
     }
-
     private async Task<UserProfile> CreateUserProfileAsync(OperationResult<string> result,
         RegisterIdentify request, IDbContextTransaction transaction, IdentityUser identity,CancellationToken cancellationToken)
     {

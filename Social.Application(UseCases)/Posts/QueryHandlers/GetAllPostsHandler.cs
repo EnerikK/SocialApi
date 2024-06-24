@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Social.Application_UseCases_.Enums;
 using Social.Application_UseCases_.Models;
+using Social.Application_UseCases_.Posts.CommandHandlers;
 using Social.Application_UseCases_.Posts.Queries;
 using Social.DataAccess;
 using Social.Domain.Aggregates.PostAggregate;
@@ -25,14 +26,7 @@ public class GetAllPostsHandler : IRequestHandler<GetAllPosts,OperationResult<Li
         }
         catch (Exception e)
         {
-            var error = new Error
-            {
-                Code = ErrorCode.UnknownError,
-                Message = $"{e.Message}"
-            };
-            result.IsError = true;
-            result.Errors.Add(error);
-            return result;
+            result.AddUnknownError(e.Message);
         }
 
         return result;

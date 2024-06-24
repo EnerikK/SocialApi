@@ -28,10 +28,7 @@ namespace Social.Application_UseCases_.UserProfiles.QueryHandlers
             
             if (profile is null) //Checking if the userprofile with this specific id exists
             {
-                result.IsError = true;
-                var error = new Error { Code = ErrorCode.NotFound, Message = $"UserProfile with Id {request.UserProfileId} not found"};
-                result.Errors.Add(error);
-                return result;
+                result.AddError(ErrorCode.NotFound,string.Format(UserProfileErrorMessage.UserProfileNotFound,request.UserProfileId));
             }
 
             result.PayLoad = profile;

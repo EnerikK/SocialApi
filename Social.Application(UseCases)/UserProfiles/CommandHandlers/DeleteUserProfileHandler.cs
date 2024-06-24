@@ -29,10 +29,7 @@ namespace Social.Application_UseCases_.UserProfiles.CommandHandlers
 
             if (userProfile is null) //Checking if the userprofile with this specific id exists
             {
-                result.IsError = true;
-                var error = new Error { Code = ErrorCode.NotFound, Message = $"UserProfile with Id {request.UserProfileId} not found"};
-                result.Errors.Add(error);
-                return result;
+                result.AddError(ErrorCode.NotFound,string.Format(UserProfileErrorMessage.UserProfileNotFound,request.UserProfileId));
             } 
             _datactx.UserProfiles.Remove(userProfile);
             await _datactx.SaveChangesAsync(cancellationToken);

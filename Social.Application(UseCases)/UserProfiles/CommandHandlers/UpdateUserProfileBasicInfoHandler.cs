@@ -32,10 +32,7 @@ namespace Social.Application_UseCases_.UserProfiles.CommandHandlers
 
                 if (userProfile is null)
                 {
-                    result.IsError = true;
-                    var error = new Error { Code = ErrorCode.NotFound, Message = $"UserProfile with Id {request.UserProfileId} not found"};
-                    result.Errors.Add(error);
-                    return result;
+                    result.AddError(ErrorCode.NotFound,string.Format(UserProfileErrorMessage.UserProfileNotFound,request.UserProfileId));
                 }
 
                 var basicInfo = BasicInfo.CreateBasicInfo(request.FirstName, request.LastName
@@ -51,23 +48,11 @@ namespace Social.Application_UseCases_.UserProfiles.CommandHandlers
             }
             catch (UserProfileNotValidException ex)
             {
-                result.IsError = true;
-                ex.ValidationErrors.ForEach(e =>
-                {
-                    var error = new Error
-                    {
-                        Code = ErrorCode.ValidationError,
-                        Message = $"{ex.Message}"
-                    };
-                    result.Errors.Add(error);
-                });
-                return result;
+                ex.ValidationErrors.ForEach(error => result.AddError(ErrorCode.ValidationError,error));
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                var error = new Error { Code = ErrorCode.ServerError, Message = ex.Message };
-                result.IsError = true;
-                result.Errors.Add(error);
+                result.AddUnknownError(e.Message);
             }
 
             return result;

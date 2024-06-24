@@ -31,32 +31,9 @@ public class LoginCommandHandler : IRequestHandler<LoginCommand,OperationResult<
         
         try
         {
-            var identityUser = await _userManager.FindByEmailAsync(request.Username);
-            if (identityUser is null)
-            {
-                result.IsError = true;
-                var error = new Error
-                {
-                    Code = ErrorCode.IdentityUserDoesNotExist,
-                    Message = $"Unable to find the user , check the username"
-                };
-                result.Errors.Add(error);
-                return result;
-            }
-
-            var validPassword = await _userManager.CheckPasswordAsync(identityUser, request.Password);
-            if (!validPassword)
-            {
-                var error = new Error
-                {
-                    Code = ErrorCode.IncorrectPassword,
-                    Message = $"Wrong Password you dummy , please try again :3"
-                };
-                result.IsError = true;
-                result.Errors.Add(error);
-                return result;
-            }
-
+            var identityUser = await ValidateAndGetIdentity(request, result);
+            if (result.IsError) return result;
+            
             var userProfile =
                 await _dataContext.UserProfiles.FirstOrDefaultAsync(userP => userP.IdentityId == identityUser.Id,cancellationToken);
             result.PayLoad = GetJWTString(identityUser, userProfile);
@@ -64,32 +41,39 @@ public class LoginCommandHandler : IRequestHandler<LoginCommand,OperationResult<
         }
         catch (Exception e)
         {
-            var error = new Error
-            {
-                Code = ErrorCode.UnknownError,
-                Message = $"{e.Message}"
-            };
-            result.IsError = true;
-            result.Errors.Add(error);
+            result.AddUnknownError(e.Message);
         }
 
         return result;
     }
+    private async Task<IdentityUser> ValidateAndGetIdentity(LoginCommand request, OperationResult<string> result)
+    {
+        
+        var identityUser = await _userManager.FindByEmailAsync(request.Username);
+        if (identityUser is null) result.AddError(ErrorCode.IdentityUserAlreadyExists,ErrorMessages.NoExistingUser);
 
+        var validPassword = await _userManager.CheckPasswordAsync(identityUser, request.Password);
+        if(!validPassword) result.AddError(ErrorCode.IdentityUserDoesNotExist,ErrorMessages.IncorrectPassword);
+
+        return identityUser;
+    }
+    
     //Small refactoring
     private string GetJWTString(IdentityUser identityUser, UserProfile userProfile)
     {
         var claimsIdentity = new ClaimsIdentity(new Claim[]
         {
-             new Claim(JwtRegisteredClaimNames.Sub, identityUser.Email),
-             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-             new Claim(JwtRegisteredClaimNames.Email, identityUser.Email),
-             new Claim("IdentityId", identityUser.Id),
-             new Claim("UserProfileId", userProfile.UserProfileId.ToString())
-         });
+            new Claim(JwtRegisteredClaimNames.Sub, identityUser.Email),
+            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+            new Claim(JwtRegisteredClaimNames.Email, identityUser.Email),
+            new Claim("IdentityId", identityUser.Id),
+            new Claim("UserProfileId", userProfile.UserProfileId.ToString())
+        });
      
-         var token = _identityService.CreateSecurityToken(claimsIdentity);
-         return _identityService.WriteToken(token);
+        var token = _identityService.CreateSecurityToken(claimsIdentity);
+        return _identityService.WriteToken(token);
     }
+
+    
     
 }
