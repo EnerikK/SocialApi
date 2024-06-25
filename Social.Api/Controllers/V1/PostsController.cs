@@ -14,6 +14,7 @@ using Social.Application_UseCases_.Posts.Commands;
 using Social.Application_UseCases_.Posts.Queries;
 using Social.Domain.Aggregates.PostAggregate;
 using Social.Domain.Validators.PostValidators;
+using PostInteraction = Social.Domain.Aggregates.PostAggregate.PostInteraction;
 
 namespace Social.Api.Controllers.V1
 {
@@ -150,7 +151,45 @@ namespace Social.Api.Controllers.V1
             var newComment = _mapper.Map<PostCommentResponse>(result.PayLoad);
             return Ok(newComment);
         }
-        
+
+        [HttpGet]
+        [Route(ApiRoutes.Posts.AddInteraction)]
+        [ValidateGuid("postId")]
+        public async Task<IActionResult> GetPostInteraction(string postId, CancellationToken token)
+        {
+            var postGuid = Guid.Parse(postId);
+            var query = new GetPostInteractions() { PostId = postGuid };
+            var result = await _mediator.Send(query, token);
+
+            if (result.IsError) HandleErrorResponse(result.Errors);
+
+            var map = _mapper.Map<List<PostInteraction>>(result.PayLoad);
+            return Ok(map);
+        }
+
+        [HttpPost]
+        [Route(ApiRoutes.Posts.AddInteraction)]
+        [ValidateGuid("postId")]
+        [ValidateModel]
+        public async Task<IActionResult> AddPostInteraction(string postId, PostInteractionCreate interaction,
+            CancellationToken token)
+        {
+            var userProfileId = HttpContext.GetUserProfileClaimValue();
+            var postGuid = Guid.Parse(postId);
+
+            var command = new AddInteraction
+            {
+               PostId = postGuid,
+               UserProfileId = userProfileId,
+               Type = interaction.Type
+            };
+
+            var result = await _mediator.Send(command, token);
+            if (result.IsError) HandleErrorResponse(result.Errors);
+            var map = _mapper.Map<PostInteraction>(result.PayLoad);
+            return Ok(map);
+        }
+
 
     }
 }

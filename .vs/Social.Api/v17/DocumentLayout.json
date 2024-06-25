@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "E:\\!C# Projects\\Social.Api\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{9AFC0A8C-3BC1-4B5A-B3FC-15F0DCB80784}|Social.DataAccess\\Social.DataAccess.csproj|e:\\!c# projects\\social.api\\social.dataaccess\\migrations\\20240624224445_adduserprofiletointeraction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9AFC0A8C-3BC1-4B5A-B3FC-15F0DCB80784}|Social.DataAccess\\Social.DataAccess.csproj|solutionrelative:social.dataaccess\\migrations\\20240624224445_adduserprofiletointeraction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{432F7A8C-93BB-498F-99B8-4265F3728DBC}|Domain\\Social.Domain.csproj|e:\\!c# projects\\social.api\\domain\\aggregates\\postaggregate\\postinteraction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{432F7A8C-93BB-498F-99B8-4265F3728DBC}|Domain\\Social.Domain.csproj|solutionrelative:domain\\aggregates\\postaggregate\\postinteraction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{8766A304-3394-4BCC-86E6-4CC6DE9ECCE4}|Social.Api\\Social.Api.csproj|e:\\!c# projects\\social.api\\social.api\\controllers\\v1\\userprofilescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8766A304-3394-4BCC-86E6-4CC6DE9ECCE4}|Social.Api\\Social.Api.csproj|solutionrelative:social.api\\controllers\\v1\\userprofilescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -102,11 +110,37 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
+              "Title": "20240624224445_AddUserProfileToInteraction.cs",
+              "DocumentMoniker": "E:\\!C# Projects\\Social.Api\\Social.DataAccess\\Migrations\\20240624224445_AddUserProfileToInteraction.cs",
+              "RelativeDocumentMoniker": "Social.DataAccess\\Migrations\\20240624224445_AddUserProfileToInteraction.cs",
+              "ToolTip": "E:\\!C# Projects\\Social.Api\\Social.DataAccess\\Migrations\\20240624224445_AddUserProfileToInteraction.cs",
+              "RelativeToolTip": "Social.DataAccess\\Migrations\\20240624224445_AddUserProfileToInteraction.cs",
+              "ViewState": "AQIAABYAAAAAAAAAAAAgwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-24T22:44:45.963Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PostInteraction.cs",
+              "DocumentMoniker": "E:\\!C# Projects\\Social.Api\\Domain\\Aggregates\\PostAggregate\\PostInteraction.cs",
+              "RelativeDocumentMoniker": "Domain\\Aggregates\\PostAggregate\\PostInteraction.cs",
+              "ToolTip": "E:\\!C# Projects\\Social.Api\\Domain\\Aggregates\\PostAggregate\\PostInteraction.cs",
+              "RelativeToolTip": "Domain\\Aggregates\\PostAggregate\\PostInteraction.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAABEAAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-24T22:39:46.631Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "DeleteUserProfileHandler.cs",
               "DocumentMoniker": "E:\\!C# Projects\\Social.Api\\Social.Application(UseCases)\\UserProfiles\\CommandHandlers\\DeleteUserProfileHandler.cs",
               "RelativeDocumentMoniker": "Social.Application(UseCases)\\UserProfiles\\CommandHandlers\\DeleteUserProfileHandler.cs",
@@ -118,7 +152,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "DeleteUserProfile.cs",
               "DocumentMoniker": "E:\\!C# Projects\\Social.Api\\Social.Application(UseCases)\\UserProfiles\\Commands\\DeleteUserProfile.cs",
               "RelativeDocumentMoniker": "Social.Application(UseCases)\\UserProfiles\\Commands\\DeleteUserProfile.cs",
@@ -130,7 +164,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "UpdateUserProfileBasicInfoHandler.cs",
               "DocumentMoniker": "E:\\!C# Projects\\Social.Api\\Social.Application(UseCases)\\UserProfiles\\CommandHandlers\\UpdateUserProfileBasicInfoHandler.cs",
               "RelativeDocumentMoniker": "Social.Application(UseCases)\\UserProfiles\\CommandHandlers\\UpdateUserProfileBasicInfoHandler.cs",
@@ -142,7 +176,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "UserProfilesController.cs",
               "DocumentMoniker": "E:\\!C# Projects\\Social.Api\\Social.Api\\Controllers\\V1\\UserProfilesController.cs",
               "RelativeDocumentMoniker": "Social.Api\\Controllers\\V1\\UserProfilesController.cs",
@@ -150,12 +184,11 @@
               "RelativeToolTip": "Social.Api\\Controllers\\V1\\UserProfilesController.cs",
               "ViewState": "AQIAABgAAAAAAAAAAAAowB8AAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-09T08:48:57.045Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-09T08:48:57.045Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "PostsController.cs",
               "DocumentMoniker": "E:\\!C# Projects\\Social.Api\\Social.Api\\Controllers\\V1\\PostsController.cs",
               "RelativeDocumentMoniker": "Social.Api\\Controllers\\V1\\PostsController.cs",
@@ -167,7 +200,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "CreateUserCommandHandler.cs",
               "DocumentMoniker": "E:\\!C# Projects\\Social.Api\\Social.Application(UseCases)\\UserProfiles\\CommandHandlers\\CreateUserCommandHandler.cs",
               "RelativeDocumentMoniker": "Social.Application(UseCases)\\UserProfiles\\CommandHandlers\\CreateUserCommandHandler.cs",
@@ -179,7 +212,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 10,
               "Title": "UpdateUserProfileBasicInfo.cs",
               "DocumentMoniker": "E:\\!C# Projects\\Social.Api\\Social.Application(UseCases)\\UserProfiles\\Commands\\UpdateUserProfileBasicInfo.cs",
               "RelativeDocumentMoniker": "Social.Application(UseCases)\\UserProfiles\\Commands\\UpdateUserProfileBasicInfo.cs",
@@ -191,7 +224,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "UserProfileCreateUpdate.cs",
               "DocumentMoniker": "E:\\!C# Projects\\Social.Api\\Social.Api\\Contracts\\UserProfiles\\Requests\\UserProfileCreateUpdate.cs",
               "RelativeDocumentMoniker": "Social.Api\\Contracts\\UserProfiles\\Requests\\UserProfileCreateUpdate.cs",
@@ -203,7 +236,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "UserProfileMappings.cs",
               "DocumentMoniker": "E:\\!C# Projects\\Social.Api\\Social.Api\\MappingProfiles\\UserProfileMappings.cs",
               "RelativeDocumentMoniker": "Social.Api\\MappingProfiles\\UserProfileMappings.cs",
@@ -215,7 +248,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 11,
               "Title": "BasicInfo.cs",
               "DocumentMoniker": "E:\\!C# Projects\\Social.Api\\Domain\\Aggregates\\UserProfileAggregate\\BasicInfo.cs",
               "RelativeDocumentMoniker": "Domain\\Aggregates\\UserProfileAggregate\\BasicInfo.cs",
@@ -227,7 +260,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 13,
               "Title": "ApiRoutes.cs",
               "DocumentMoniker": "E:\\!C# Projects\\Social.Api\\Social.Api\\ApiRoutes.cs",
               "RelativeDocumentMoniker": "Social.Api\\ApiRoutes.cs",
@@ -239,7 +272,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 14,
               "Title": "UserProfile.cs",
               "DocumentMoniker": "E:\\!C# Projects\\Social.Api\\Domain\\Aggregates\\UserProfileAggregate\\UserProfile.cs",
               "RelativeDocumentMoniker": "Domain\\Aggregates\\UserProfileAggregate\\UserProfile.cs",
@@ -251,7 +284,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 16,
               "Title": "GetAllUserProfiles.cs",
               "DocumentMoniker": "E:\\!C# Projects\\Social.Api\\Social.Application(UseCases)\\UserProfiles\\Queries\\GetAllUserProfiles.cs",
               "RelativeDocumentMoniker": "Social.Application(UseCases)\\UserProfiles\\Queries\\GetAllUserProfiles.cs",
@@ -263,7 +296,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 12,
               "Title": "CreateUserCommand.cs",
               "DocumentMoniker": "E:\\!C# Projects\\Social.Api\\Social.Application(UseCases)\\UserProfiles\\Commands\\CreateUserCommand.cs",
               "RelativeDocumentMoniker": "Social.Application(UseCases)\\UserProfiles\\Commands\\CreateUserCommand.cs",
@@ -275,7 +308,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 17,
               "Title": "GetAllUserProfilesQueryHandler.cs",
               "DocumentMoniker": "E:\\!C# Projects\\Social.Api\\Social.Application(UseCases)\\UserProfiles\\QueryHandlers\\GetAllUserProfilesQueryHandler.cs",
               "RelativeDocumentMoniker": "Social.Application(UseCases)\\UserProfiles\\QueryHandlers\\GetAllUserProfilesQueryHandler.cs",
@@ -287,7 +320,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 18,
               "Title": "GetUserProfileById.cs",
               "DocumentMoniker": "E:\\!C# Projects\\Social.Api\\Social.Application(UseCases)\\UserProfiles\\Queries\\GetUserProfileById.cs",
               "RelativeDocumentMoniker": "Social.Application(UseCases)\\UserProfiles\\Queries\\GetUserProfileById.cs",
@@ -299,7 +332,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 19,
               "Title": "GetUserProfileByIdHandler.cs",
               "DocumentMoniker": "E:\\!C# Projects\\Social.Api\\Social.Application(UseCases)\\UserProfiles\\QueryHandlers\\GetUserProfileByIdHandler.cs",
               "RelativeDocumentMoniker": "Social.Application(UseCases)\\UserProfiles\\QueryHandlers\\GetUserProfileByIdHandler.cs",
@@ -311,7 +344,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 15,
               "Title": "BogardRegister.cs",
               "DocumentMoniker": "E:\\!C# Projects\\Social.Api\\Social.Api\\Registers\\BogardRegister.cs",
               "RelativeDocumentMoniker": "Social.Api\\Registers\\BogardRegister.cs",
@@ -323,7 +356,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 20,
               "Title": "UserProfileMap.cs",
               "DocumentMoniker": "E:\\!C# Projects\\Social.Api\\Social.Application(UseCases)\\MappingProfiles\\UserProfileMap.cs",
               "RelativeDocumentMoniker": "Social.Application(UseCases)\\MappingProfiles\\UserProfileMap.cs",
@@ -335,7 +368,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 21,
               "Title": "UserProfileResponse.cs",
               "DocumentMoniker": "E:\\!C# Projects\\Social.Api\\Social.Api\\Contracts\\UserProfiles\\Responses\\UserProfileResponse.cs",
               "RelativeDocumentMoniker": "Social.Api\\Contracts\\UserProfiles\\Responses\\UserProfileResponse.cs",
@@ -347,7 +380,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 22,
               "Title": "BasicInformation.cs",
               "DocumentMoniker": "E:\\!C# Projects\\Social.Api\\Social.Api\\Contracts\\UserProfiles\\Responses\\BasicInformation.cs",
               "RelativeDocumentMoniker": "Social.Api\\Contracts\\UserProfiles\\Responses\\BasicInformation.cs",
@@ -359,7 +392,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 24,
               "Title": "MVCRegistrar.cs",
               "DocumentMoniker": "E:\\!C# Projects\\Social.Api\\Social.Api\\Registers\\MVCRegistrar.cs",
               "RelativeDocumentMoniker": "Social.Api\\Registers\\MVCRegistrar.cs",
@@ -371,7 +404,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 23,
               "Title": "DbRegistrer.cs",
               "DocumentMoniker": "E:\\!C# Projects\\Social.Api\\Social.Api\\Registers\\DbRegistrer.cs",
               "RelativeDocumentMoniker": "Social.Api\\Registers\\DbRegistrer.cs",
