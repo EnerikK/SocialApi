@@ -12,7 +12,6 @@ namespace Social.Application_UseCases_.Posts.QueryHandlers;
 public class GetPostInteractionHandler : IRequestHandler<GetPostInteractions,OperationResult<List<PostInteraction>>>
 {
     private readonly DataContext _dataContext;
-
     public GetPostInteractionHandler(DataContext dataContext)
     {
         _dataContext = dataContext;
@@ -28,10 +27,11 @@ public class GetPostInteractionHandler : IRequestHandler<GetPostInteractions,Ope
                 .ThenInclude(incl => incl.UserProfileId)
                 .FirstOrDefaultAsync(post => post.PostId == request.PostId, cancellationToken);
 
-            if (post is null)
+            if (post == null)
             {
                 result.AddError(ErrorCode.NotFound, PostErrorMessages.PostNotFound);
                 return result;
+                
             }
             result.PayLoad = post.Interactions.ToList();
         }

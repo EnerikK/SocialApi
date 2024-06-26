@@ -22,11 +22,12 @@ namespace Social.Api.MappingProfiles
             such as displaying user information in a list or passing simplified data through an API.*/
             CreateMap<UserProfile, InteractionUser>()
                 .ForMember(destination => destination.FullName,
-                    options
-                        => options.MapFrom(source => source.BasicInfo.FirstName + " " + source.BasicInfo.LastName))
+                options
+                => options.MapFrom(source 
+                => source.BasicInfo.FirstName + " " + source.BasicInfo.LastName))
                 .ForMember(destination => destination.City,
-                    options =>
-                        options.MapFrom(source => source.BasicInfo.CurrentCity));
+                options =>
+                 options.MapFrom(source => source.BasicInfo.CurrentCity));
         }
     }
 }

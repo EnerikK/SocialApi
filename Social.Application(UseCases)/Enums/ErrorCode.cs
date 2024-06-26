@@ -11,6 +11,8 @@ public enum ErrorCode
     IncorrectPassword = 7,
     UpdatePostNotPossible = 8,
     DeletePostNotPossible = 9,
-    UnknownError = 10,
+    UnauthorizedAccountRemoval = 10,
+    InteractionRemovalNotAuthorized = 11,
+    UnknownError = 12,
 
 }

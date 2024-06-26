@@ -25,7 +25,7 @@ public class AddInteractionHandler : IRequestHandler<AddInteraction,OperationRes
             var post = await _dataContext.Posts.Include(post => post.Interactions)
                 .FirstOrDefaultAsync(post => post.PostId == request.PostId, cancellationToken);
 
-            if (post is null)
+            if (post == null)
             {
                 result.AddError(ErrorCode.NotFound, PostErrorMessages.PostNotFound);
                 return result;

@@ -62,7 +62,7 @@ namespace Social.Api.Controllers.V1
             if (response.IsError) return HandleErrorResponse(response.Errors);
             return NoContent();
         }
-        [HttpDelete]
+        /*[HttpDelete]
         [Route(ApiRoutes.UserProfiles.IdRoute)]
         [ValidateGuid("id")]
         public async Task<IActionResult> DeleteUserProfile(string id , CancellationToken cancellationToken)
@@ -72,6 +72,6 @@ namespace Social.Api.Controllers.V1
                                                                                   // will execute and return a response
             if (response.IsError) return HandleErrorResponse(response.Errors);
             return NoContent();
-        }
+        }*/
     }
 }

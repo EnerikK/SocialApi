@@ -1,7 +1,10 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Social.Api.Contracts.Identity;
+using Social.Api.Extensions;
 using Social.Api.Filters;
 using Social.Application_UseCases_.Identity.Commands;
 
@@ -48,5 +51,25 @@ public class IdentifyController : BaseController
 
         var authenticationResult = new AuthenticationResult() { Token = result.PayLoad };
         return Ok(authenticationResult);
+    }
+
+    [HttpDelete]
+    [Route(ApiRoutes.Identity.IdentityById)]
+    [ValidateGuid("identityUserId")]
+    [Authorize( AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    public async Task<IActionResult> DeleteAccount(string identityUserId, CancellationToken token)
+    {
+        var identityUserGuid = Guid.Parse(identityUserId);
+        var requestedGuid = HttpContext.GetIdentityIdClaimValue();
+
+        var command = new RemoveAccount
+        {
+            IdentityUserId = identityUserGuid,
+            RequestedGuid = requestedGuid
+        };
+
+        var result = await _mediator.Send(command,token);
+        if (result.IsError) HandleErrorResponse(result.Errors);
+        return NoContent();
     }
 }

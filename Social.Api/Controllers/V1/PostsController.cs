@@ -153,12 +153,12 @@ namespace Social.Api.Controllers.V1
         }
 
         [HttpGet]
-        [Route(ApiRoutes.Posts.AddInteraction)]
+        [Route(ApiRoutes.Posts.PostInteractions)]
         [ValidateGuid("postId")]
         public async Task<IActionResult> GetPostInteraction(string postId, CancellationToken token)
         {
             var postGuid = Guid.Parse(postId);
-            var query = new GetPostInteractions() { PostId = postGuid };
+            var query = new GetPostInteractions { PostId = postGuid };
             var result = await _mediator.Send(query, token);
 
             if (result.IsError) HandleErrorResponse(result.Errors);
@@ -168,7 +168,7 @@ namespace Social.Api.Controllers.V1
         }
 
         [HttpPost]
-        [Route(ApiRoutes.Posts.AddInteraction)]
+        [Route(ApiRoutes.Posts.PostInteractions)]
         [ValidateGuid("postId")]
         [ValidateModel]
         public async Task<IActionResult> AddPostInteraction(string postId, PostInteractionCreate interaction,
@@ -176,16 +176,42 @@ namespace Social.Api.Controllers.V1
         {
             var userProfileId = HttpContext.GetUserProfileClaimValue();
             var postGuid = Guid.Parse(postId);
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+            var userProfileId2 = identity?.FindFirst("UserProfileId")?.Value;
 
             var command = new AddInteraction
             {
                PostId = postGuid,
-               UserProfileId = userProfileId,
+               UserProfileId = Guid.Parse(userProfileId2),
                Type = interaction.Type
             };
 
             var result = await _mediator.Send(command, token);
             if (result.IsError) HandleErrorResponse(result.Errors);
+            var map = _mapper.Map<PostInteraction>(result.PayLoad);
+            return Ok(map);
+        }
+
+        [HttpDelete]
+        [Route(ApiRoutes.Posts.Interaction)]
+        [ValidateGuid("postId","interactionId")]
+        public async Task<IActionResult> RemovePostInteraction(string postId, string interactionId,
+            CancellationToken token)
+        {
+            var postGuid = Guid.Parse(postId);
+            var interactionGuid = Guid.Parse(interactionId);
+            var userProfileGuid = HttpContext.GetUserProfileClaimValue();
+
+            var command = new RemoveInteraction
+            {
+                PostId = postGuid,
+                InteractionId = interactionGuid,
+                UserProfile = userProfileGuid
+            };
+
+            var result = await _mediator.Send(command, token);
+
+            if (result.IsError) return HandleErrorResponse(result.Errors);
             var map = _mapper.Map<PostInteraction>(result.PayLoad);
             return Ok(map);
         }
