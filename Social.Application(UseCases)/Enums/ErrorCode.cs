@@ -13,6 +13,7 @@ public enum ErrorCode
     DeletePostNotPossible = 9,
     UnauthorizedAccountRemoval = 10,
     InteractionRemovalNotAuthorized = 11,
-    UnknownError = 12,
+    CommentRemovalNotAuthorized = 12,
+    UnknownError = 13,
 
 }

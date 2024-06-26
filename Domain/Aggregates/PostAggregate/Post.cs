@@ -80,6 +80,12 @@ namespace Social.Domain.Aggregates.PostAggregate
         {
             _comments.Remove(toRemove);
         }
+
+        public void UpdatePostComment(Guid postCommentId, string updatedComment)
+        {
+            var comment = _comments.FirstOrDefault(com => com.CommentId == postCommentId);
+            if (comment != null && !string.IsNullOrWhiteSpace(updatedComment)) comment.UpdateCommentText(updatedComment);
+        }
         public void AddInteraction(PostInteraction newInteraction)
         {
             _interactions.Add(newInteraction);

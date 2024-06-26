@@ -152,6 +152,56 @@ namespace Social.Api.Controllers.V1
             return Ok(newComment);
         }
 
+        [HttpDelete]
+        [Route(ApiRoutes.Posts.CommentById)]
+        [ValidateGuid("postId","commentId")]
+        public async Task<IActionResult> RemoveCommentFromPost(string postId, string commentId, CancellationToken token)
+        {
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+            var userProfileId = identity?.FindFirst("UserProfileId")?.Value;
+            var postGuid = Guid.Parse(postId);
+            var commentGuid = Guid.Parse(commentId);
+
+            var command = new RemoveCommentFromPost
+            {
+                UserProfileId = Guid.Parse(userProfileId),
+                CommentId = Guid.Parse(commentId),
+                PostId = postGuid
+            };
+
+            var result = await _mediator.Send(command, token);
+            if (result.IsError) HandleErrorResponse(result.Errors);
+            
+            return NoContent();
+        }
+        [HttpPut]
+        [Route(ApiRoutes.Posts.CommentById)]
+        [ValidateGuid("postId", "commentId")]
+        [ValidateModel]
+        public async Task<IActionResult> UpdateCommentText(string postId, string commentId, PostUpdate updateComment, CancellationToken token)
+        {
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+            var userProfileId = identity?.FindFirst("UserProfileId")?.Value;
+            var postGuid = Guid.Parse(postId);
+            var commentGuid = Guid.Parse(commentId);
+
+            var command = new UpdatePostComment()
+            {
+                UserProfileId = Guid.Parse(userProfileId),
+                PostId = postGuid,
+                CommentId = commentGuid,
+                UpdatedText = updateComment.text
+            };
+
+            var result = await _mediator.Send(command, token);
+            if (result.IsError) HandleErrorResponse(result.Errors);
+
+            return NoContent();
+        }
+        
+        
+        
+        /*Interactions*/
         [HttpGet]
         [Route(ApiRoutes.Posts.PostInteractions)]
         [ValidateGuid("postId")]
@@ -187,7 +237,7 @@ namespace Social.Api.Controllers.V1
             };
 
             var result = await _mediator.Send(command, token);
-            if (result.IsError) HandleErrorResponse(result.Errors);
+            if (result.IsError) return HandleErrorResponse(result.Errors);
             var map = _mapper.Map<PostInteraction>(result.PayLoad);
             return Ok(map);
         }
