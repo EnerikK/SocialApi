@@ -1,10 +1,12 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Social.Application_UseCases_.Enums;
 using Social.Application_UseCases_.Identity.Commands;
+using Social.Application_UseCases_.Identity.Dto_s;
 using Social.Application_UseCases_.Models;
 using Social.Application_UseCases_.Services;
 using Social.DataAccess;
@@ -12,48 +14,52 @@ using Social.Domain.Aggregates.UserProfileAggregate;
 
 namespace Social.Application_UseCases_.Identity.Handlers;
 
-public class LoginCommandHandler : IRequestHandler<LoginCommand,OperationResult<string>>
+public class LoginCommandHandler : IRequestHandler<LoginCommand,OperationResult<IdentityUserProfileDto>>
 {
     private readonly DataContext _dataContext;
     private readonly UserManager<IdentityUser> _userManager;
     private readonly IdentityService _identityService;
+    private readonly IMapper _mapper;
+    private OperationResult<IdentityUserProfileDto> _result = new();
 
-    public LoginCommandHandler(DataContext dataContext , UserManager<IdentityUser> userManager,IdentityService identityService)
+    public LoginCommandHandler(DataContext dataContext , UserManager<IdentityUser> userManager,IdentityService identityService,IMapper mapper)
     {
         _dataContext = dataContext;
         _userManager = userManager;
         _identityService = identityService;
+        _mapper = mapper;
     }
     
-    public async Task<OperationResult<string>> Handle(LoginCommand request, CancellationToken cancellationToken)
+    public async Task<OperationResult<IdentityUserProfileDto>> Handle(LoginCommand request, CancellationToken cancellationToken)
     {
-        var result = new OperationResult<string>();
-        
         try
         {
-            var identityUser = await ValidateAndGetIdentity(request, result);
-            if (result.IsError) return result;
+            var identityUser = await ValidateAndGetIdentity(request);
+            if (_result.IsError) return _result;
             
             var userProfile =
                 await _dataContext.UserProfiles.FirstOrDefaultAsync(userP => userP.IdentityId == identityUser.Id,cancellationToken);
-            result.PayLoad = GetJWTString(identityUser, userProfile);
-            return result;
+
+            _result.PayLoad = _mapper.Map<IdentityUserProfileDto>(userProfile);
+            _result.PayLoad.UserName = identityUser.UserName;
+            _result.PayLoad.Token = GetJWTString(identityUser, userProfile);
+            return _result;
         }
         catch (Exception e)
         {
-            result.AddUnknownError(e.Message);
+            _result.AddUnknownError(e.Message);
         }
 
-        return result;
+        return _result;
     }
-    private async Task<IdentityUser> ValidateAndGetIdentity(LoginCommand request, OperationResult<string> result)
+    private async Task<IdentityUser> ValidateAndGetIdentity(LoginCommand request)
     {
         
         var identityUser = await _userManager.FindByEmailAsync(request.Username);
-        if (identityUser is null) result.AddError(ErrorCode.IdentityUserAlreadyExists,ErrorMessages.NoExistingUser);
+        if (identityUser is null) _result.AddError(ErrorCode.IdentityUserAlreadyExists,ErrorMessages.NoExistingUser);
 
         var validPassword = await _userManager.CheckPasswordAsync(identityUser, request.Password);
-        if(!validPassword) result.AddError(ErrorCode.IdentityUserDoesNotExist,ErrorMessages.IncorrectPassword);
+        if(!validPassword) _result.AddError(ErrorCode.IdentityUserDoesNotExist,ErrorMessages.IncorrectPassword);
 
         return identityUser;
     }

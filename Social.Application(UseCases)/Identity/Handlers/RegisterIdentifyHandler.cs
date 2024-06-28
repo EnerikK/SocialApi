@@ -1,6 +1,7 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore.Storage;
@@ -8,6 +9,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Social.Application_UseCases_.Enums;
 using Social.Application_UseCases_.Identity.Commands;
+using Social.Application_UseCases_.Identity.Dto_s;
 using Social.Application_UseCases_.Models;
 using Social.Application_UseCases_.Options;
 using Social.Application_UseCases_.Services;
@@ -18,60 +20,63 @@ using JwtRegisteredClaimNames = System.IdentityModel.Tokens.Jwt.JwtRegisteredCla
 
 namespace Social.Application_UseCases_.Identity.Handlers;
 
-public class RegisterIdentifyHandler : IRequestHandler<RegisterIdentify,OperationResult<string>>
+public class RegisterIdentifyHandler : IRequestHandler<RegisterIdentify,OperationResult<IdentityUserProfileDto>>
 {
     private readonly DataContext _dataContext;
     private readonly UserManager<IdentityUser> _userManager;
     private readonly IdentityService _identityService;
+    private readonly IMapper _mapper;
+    private OperationResult<IdentityUserProfileDto> _result = new();
     
     public RegisterIdentifyHandler(DataContext dataContext, UserManager<IdentityUser> userManager,
-        IdentityService identityService)
+        IdentityService identityService,IMapper mapper)
     {
         _dataContext = dataContext;
         _userManager = userManager;
         _identityService = identityService;
+        _mapper = mapper;
     }
 
-    public async Task<OperationResult<string>> Handle(RegisterIdentify request, CancellationToken cancellationToken)
+    public async Task<OperationResult<IdentityUserProfileDto>> Handle(RegisterIdentify request, CancellationToken cancellationToken)
     {
-        var result = new OperationResult<string>();
 
         try
         {
-            await ValidateIdentityDoesNotExist(result, request);
-            if (result.IsError) return result;
+            await ValidateIdentityDoesNotExist(request);
+            if (_result.IsError) return _result;
 
             await using var transaction = await _dataContext.Database.BeginTransactionAsync(cancellationToken);
             
-            var identity = await CreateIdentityUserAsync(result, request, transaction,cancellationToken);
-            if (result.IsError) return result;
+            var identity = await CreateIdentityUserAsync(request, transaction,cancellationToken);
+            if (_result.IsError) return _result;
 
-            var profile = await CreateUserProfileAsync(result, request, transaction, identity,cancellationToken);
+            var profile = await CreateUserProfileAsync(request, transaction, identity,cancellationToken);
             await transaction.CommitAsync(cancellationToken);
 
-            result.PayLoad = GetJWTString(identity, profile);
-            return result;
+            _result.PayLoad = _mapper.Map<IdentityUserProfileDto>(profile);
+            _result.PayLoad.UserName = identity.UserName;
+            _result.PayLoad.Token = GetJWTString(identity, profile);
+            return _result;
         }
         catch (UserProfileNotValidException ex)
         {
-            ex.ValidationErrors.ForEach(error => result.AddError(ErrorCode.ValidationError, error));
+            ex.ValidationErrors.ForEach(error => _result.AddError(ErrorCode.ValidationError, error));
         }
         catch (Exception e)
         {
-            result.AddUnknownError(e.Message);
+            _result.AddUnknownError(e.Message);
         }
-        return result;
+        return _result;
     }
-     private async Task ValidateIdentityDoesNotExist(OperationResult<string> result,
-         RegisterIdentify request)
+     private async Task ValidateIdentityDoesNotExist(RegisterIdentify request)
     {
         var existingIdentity = await _userManager.FindByEmailAsync(request.Username);
 
-        if(existingIdentity != null) result.AddError(ErrorCode.IdentityUserAlreadyExists,ErrorMessages.UserAlreadyExists);
+        if(existingIdentity != null) _result.AddError(ErrorCode.IdentityUserAlreadyExists,ErrorMessages.UserAlreadyExists);
     }
 
-    private async Task<IdentityUser> CreateIdentityUserAsync(OperationResult<string> result,
-        RegisterIdentify request, IDbContextTransaction transaction,CancellationToken cancellationToken)
+    private async Task<IdentityUser> CreateIdentityUserAsync(RegisterIdentify request, IDbContextTransaction transaction,
+        CancellationToken cancellationToken)
     {
         var identity = new IdentityUser {Email = request.Username, UserName = request.Username};
         var createdIdentity = await _userManager.CreateAsync(identity, request.Password);
@@ -81,13 +86,13 @@ public class RegisterIdentifyHandler : IRequestHandler<RegisterIdentify,Operatio
 
             foreach (var identityError in createdIdentity.Errors)
             {
-                result.AddError(ErrorCode.IdentityCreationFailed,identityError.Description);
+                _result.AddError(ErrorCode.IdentityCreationFailed,identityError.Description);
             }
         }
         return identity;
     }
-    private async Task<UserProfile> CreateUserProfileAsync(OperationResult<string> result,
-        RegisterIdentify request, IDbContextTransaction transaction, IdentityUser identity,CancellationToken cancellationToken)
+    private async Task<UserProfile> CreateUserProfileAsync(RegisterIdentify request, IDbContextTransaction transaction,
+        IdentityUser identity,CancellationToken cancellationToken)
     {
         try
         {
