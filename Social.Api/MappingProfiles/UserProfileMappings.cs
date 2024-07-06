@@ -2,6 +2,7 @@
 using Social.Api.Contracts.Posts.Responses;
 using Social.Api.Contracts.UserProfile.Requests;
 using Social.Api.Contracts.UserProfile.Responses;
+using Social.Api.Contracts.UserProfiles.Responses;
 using Social.Application_UseCases_.UserProfiles.Commands;
 using Social.Domain.Aggregates.PostAggregate;
 using Social.Domain.Aggregates.UserProfileAggregate;

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Social.Api.Contracts.UserProfile.Requests;
 using Social.Api.Contracts.UserProfile.Responses;
+using Social.Api.Contracts.UserProfiles.Responses;
 using Social.Api.Filters;
 using Social.Application_UseCases_.UserProfiles.Commands;
 using Social.Application_UseCases_.UserProfiles.Queries;
@@ -45,8 +46,9 @@ namespace Social.Api.Controllers.V1
             var response = await _mediator.Send(query,cancellationToken);
 
             if (response.IsError) return HandleErrorResponse(response.Errors);
-            
-            var userProfile = _mapper.Map<UserProfileResponse>(response.PayLoad);
+
+            var userProfile = UserProfileResponse.UserProfileDto(response.PayLoad);
+
             return Ok(userProfile);
         }
         [HttpPatch]

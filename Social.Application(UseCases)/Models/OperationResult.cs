@@ -7,7 +7,6 @@ public class OperationResult<T>
     public T PayLoad { get; set; }
     public bool IsError { get; private set; }
     public List<Error> Errors { get; } = new List<Error>();
-
     //Add an error to the error list and set the IsError to true
     public void AddError(ErrorCode code, string message)
     {
