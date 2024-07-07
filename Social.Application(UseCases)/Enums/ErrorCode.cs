@@ -14,6 +14,10 @@ public enum ErrorCode
     UnauthorizedAccountRemoval = 10,
     InteractionRemovalNotAuthorized = 11,
     CommentRemovalNotAuthorized = 12,
-    UnknownError = 13,
+    FriendRequestValidationError = 13,
+    FriendRequestAcceptNotPossible = 14,
+    FriendRequestRejectNotPossible = 15,
+    DatabaseOperationException = 16,
+    UnknownError = 17,
 
 }
