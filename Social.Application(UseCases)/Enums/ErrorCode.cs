@@ -2,22 +2,27 @@
 
 public enum ErrorCode
 {
-    NotFound = 1,
-    ServerError = 2,
-    ValidationError = 3,
-    IdentityUserAlreadyExists = 4,
-    IdentityCreationFailed = 5,
-    IdentityUserDoesNotExist = 6,
-    IncorrectPassword = 7,
-    UpdatePostNotPossible = 8,
-    DeletePostNotPossible = 9,
-    UnauthorizedAccountRemoval = 10,
-    InteractionRemovalNotAuthorized = 11,
-    CommentRemovalNotAuthorized = 12,
-    FriendRequestValidationError = 13,
-    FriendRequestAcceptNotPossible = 14,
-    FriendRequestRejectNotPossible = 15,
-    DatabaseOperationException = 16,
-    UnknownError = 17,
+    NotFound = 404,
+    ServerError = 500,
+    
+    ValidationError = 101,
+    FriendRequestValidationError = 102,
+
+    IdentityUserAlreadyExists = 102,
+    
+    IdentityCreationFailed = 202,
+    IdentityUserDoesNotExist = 203,
+    
+    IncorrectPassword = 300,
+    UpdatePostNotPossible = 301,
+    DeletePostNotPossible = 302,
+    UnauthorizedAccountRemoval = 303,
+    InteractionRemovalNotAuthorized = 304,
+    CommentRemovalNotAuthorized = 305,
+    FriendRequestAcceptNotPossible = 306,
+    FriendRequestRejectNotPossible = 307,
+    DatabaseOperationException = 308,
+    
+    UnknownError = 1,
 
 }

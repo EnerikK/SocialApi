@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Social.Application_UseCases_.Models;
 
-namespace Social.Application_UseCases_.FriendRequest.Command;
+namespace Social.Application_UseCases_.Friend.Command;
 
 public class RejectFriendRequest : IRequest<OperationResult<Unit>>
 {

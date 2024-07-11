@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Social.Application_UseCases_.Enums;
+using Social.Application_UseCases_.Friend.Command;
 using Social.Application_UseCases_.FriendRequest.Command;
 using Social.Application_UseCases_.Models;
 using Social.DataAccess;

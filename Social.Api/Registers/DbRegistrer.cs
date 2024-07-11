@@ -1,7 +1,6 @@
 ﻿
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 using Social.DataAccess;
 
 namespace Social.Api.Registers

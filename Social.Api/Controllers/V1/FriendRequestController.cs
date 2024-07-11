@@ -6,6 +6,7 @@ using Social.Api.Extensions;
 using Social.Api.Filters;
 using AutoMapper;
 using MediatR;
+using Social.Application_UseCases_.Friend.Command;
 using Social.Application_UseCases_.FriendRequest.Command;
 
 namespace Social.Api.Controllers.V1;
